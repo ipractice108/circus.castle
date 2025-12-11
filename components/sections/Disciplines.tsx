@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Section } from '@/components/ui/Section';
 import { Sparkles, Users, Dumbbell, Music } from 'lucide-react';
 
@@ -41,6 +41,12 @@ const disciplines = [
 ];
 
 export const Disciplines: React.FC = () => {
+  const [selectedDiscipline, setSelectedDiscipline] = useState<number | null>(null);
+
+  const handleDisciplineClick = (index: number) => {
+    setSelectedDiscipline(selectedDiscipline === index ? null : index);
+  };
+
   return (
     <Section id="disciplines" className="bg-circus-black">
       {/* Title */}
@@ -65,6 +71,8 @@ export const Disciplines: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
         {disciplines.map((discipline, index) => {
           const Icon = discipline.icon;
+          const isSelected = selectedDiscipline === index;
+
           return (
             <motion.div
               key={index}
@@ -74,27 +82,58 @@ export const Disciplines: React.FC = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`${discipline.gridClass} group`}
             >
-              <div className="h-full rounded-2xl overflow-hidden border border-circus-lightGray/10 hover:border-circus-orange/50 transition-all duration-300 hover:transform hover:scale-105 relative">
-                {/* Background Image */}
+              <div className="relative">
                 <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url('${discipline.image}')` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-circus-black via-circus-black/90 to-circus-black/70" />
+                  onClick={() => handleDisciplineClick(index)}
+                  className={`h-full rounded-2xl overflow-hidden border cursor-pointer transition-all duration-300 hover:transform hover:scale-105 relative ${
+                    isSelected
+                      ? 'border-circus-green shadow-lg shadow-circus-green/20'
+                      : 'border-circus-lightGray/10 hover:border-circus-orange/50'
+                  }`}
+                >
+                  {/* Background Image */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url('${discipline.image}')` }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-circus-black via-circus-black/90 to-circus-black/70" />
 
-                {/* Content */}
-                <div className="relative z-10 p-8 flex flex-col h-full">
-                  <div className="mb-4">
-                    <Icon className="w-10 h-10 text-circus-orange group-hover:text-circus-cyan transition-colors duration-300" />
+                  {/* Content */}
+                  <div className="relative z-10 p-8 flex flex-col h-full">
+                    <div className="mb-4">
+                      <Icon className="w-10 h-10 text-circus-orange group-hover:text-circus-cyan transition-colors duration-300" />
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-2">{discipline.title}</h3>
+                    <p className="text-circus-orange text-sm font-semibold mb-4 uppercase tracking-wide">
+                      {discipline.description}
+                    </p>
+                    <p className="text-circus-lightGray leading-relaxed flex-grow">
+                      {discipline.details}
+                    </p>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2">{discipline.title}</h3>
-                  <p className="text-circus-orange text-sm font-semibold mb-4 uppercase tracking-wide">
-                    {discipline.description}
-                  </p>
-                  <p className="text-circus-lightGray leading-relaxed flex-grow">
-                    {discipline.details}
-                  </p>
                 </div>
+
+                {/* Book Now Button */}
+                <AnimatePresence>
+                  {isSelected && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -20, height: 0 }}
+                      animate={{ opacity: 1, y: 0, height: 'auto' }}
+                      exit={{ opacity: 0, y: -20, height: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeOut' }}
+                      className="overflow-hidden"
+                    >
+                      <a
+                        href="https://www.instagram.com/circus.castle.bali/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block mt-4 w-full bg-circus-green hover:bg-circus-green/90 text-white font-bold py-4 px-6 rounded-xl text-center uppercase tracking-wider transition-all duration-300 hover:shadow-lg hover:shadow-circus-green/30 hover:transform hover:scale-105"
+                      >
+                        Book Now
+                      </a>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </motion.div>
           );
