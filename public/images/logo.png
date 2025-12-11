@@ -1,0 +1,10 @@
+<!-- This is a placeholder. Replace with actual logo from Google Drive -->
+<svg width="200" height="80" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="80" fill="#0A0A0A"/>
+  <text x="100" y="45" font-family="Arial, sans-serif" font-size="14" fill="#F05B30" text-anchor="middle" font-weight="bold">
+    CIRCUS CASTLE BALI
+  </text>
+  <text x="100" y="65" font-family="Arial, sans-serif" font-size="10" fill="#FF3399" text-anchor="middle">
+    Upload logo.png here
+  </text>
+</svg>

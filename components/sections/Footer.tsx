@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
             transition={{ duration: 0.5 }}
           >
             <img
-              src="https://drive.google.com/uc?export=view&id=1v82E5jnhc6EfsrfThbXeEtlHIexmnqN7"
+              src="/images/logo.png"
               alt="Circus Castle Bali Logo"
               className="h-12 mb-6"
             />
@@ -135,7 +135,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-circus-lightGray text-sm">
             <p>© 2024 Circus Castle Bali. All rights reserved.</p>
             <img
-              src="https://drive.google.com/uc?export=view&id=1v82E5jnhc6EfsrfThbXeEtlHIexmnqN7"
+              src="/images/logo.png"
               alt="Circus Castle Bali Logo"
               className="h-8 opacity-60"
             />

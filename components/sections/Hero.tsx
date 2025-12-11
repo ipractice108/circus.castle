@@ -24,10 +24,21 @@ export const Hero: React.FC = () => {
           className="mb-6"
         >
           <img
-            src="https://drive.google.com/uc?export=view&id=1v82E5jnhc6EfsrfThbXeEtlHIexmnqN7"
+            src="/images/logo.png"
             alt="Circus Castle Bali Logo"
             className="h-16 md:h-20 mx-auto"
+            onError={(e) => {
+              // Fallback to text if image fails to load
+              e.currentTarget.style.display = 'none';
+              const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+              if (fallback) fallback.style.display = 'block';
+            }}
           />
+          <div className="hidden">
+            <span className="inline-block px-6 py-2 rounded-full border-2 border-circus-orange text-circus-orange font-heading text-sm tracking-widest uppercase">
+              SPORT ART FUN
+            </span>
+          </div>
         </motion.div>
 
         {/* Main Headline */}
