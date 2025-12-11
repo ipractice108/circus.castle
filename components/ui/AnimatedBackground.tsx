@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 
 interface Diamond {
   id: number;
@@ -14,6 +14,51 @@ interface Diamond {
 }
 
 const colors = ['#F05B30', '#FF3399', '#00A3FF', '#00CC66', '#FF6633'];
+
+// Separate component for each diamond to properly use hooks
+const AnimatedDiamond: React.FC<{ diamond: Diamond; scrollProgress: MotionValue<number> }> = ({
+  diamond,
+  scrollProgress,
+}) => {
+  const x = useTransform(
+    scrollProgress,
+    [0, 0.2, 0.5, 0.8, 1],
+    [diamond.startX, diamond.centerX, diamond.centerX, diamond.centerX, diamond.startX]
+  );
+
+  const y = useTransform(
+    scrollProgress,
+    [0, 0.2, 0.5, 0.8, 1],
+    [diamond.startY, diamond.centerY, diamond.centerY, diamond.centerY, diamond.startY]
+  );
+
+  return (
+    <motion.g>
+      <motion.path
+        d="M 0 -8 L 8 0 L 0 8 L -8 0 Z"
+        fill={diamond.color}
+        filter="url(#softGlow)"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{
+          opacity: [0.15, 0.4, 0.15],
+          scale: [0.6, 1, 0.6],
+          rotate: [0, 180, 360],
+        }}
+        transition={{
+          duration: 12 + diamond.delay * 3,
+          repeat: Infinity,
+          delay: diamond.delay,
+          ease: 'easeInOut',
+        }}
+        style={{
+          x,
+          y,
+          transformOrigin: 'center',
+        }}
+      />
+    </motion.g>
+  );
+};
 
 export const AnimatedBackground: React.FC = () => {
   const { scrollYProgress } = useScroll();
@@ -72,46 +117,9 @@ export const AnimatedBackground: React.FC = () => {
           </filter>
         </defs>
 
-        {diamonds.map((diamond) => {
-          const x = useTransform(
-            scrollYProgress,
-            [0, 0.2, 0.5, 0.8, 1],
-            [diamond.startX, diamond.centerX, diamond.centerX, diamond.centerX, diamond.startX]
-          );
-
-          const y = useTransform(
-            scrollYProgress,
-            [0, 0.2, 0.5, 0.8, 1],
-            [diamond.startY, diamond.centerY, diamond.centerY, diamond.centerY, diamond.startY]
-          );
-
-          return (
-            <motion.g key={diamond.id}>
-              <motion.path
-                d={`M 0 -8 L 8 0 L 0 8 L -8 0 Z`}
-                fill={diamond.color}
-                filter="url(#softGlow)"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{
-                  opacity: [0.15, 0.4, 0.15],
-                  scale: [0.6, 1, 0.6],
-                  rotate: [0, 180, 360],
-                }}
-                transition={{
-                  duration: 12 + diamond.delay * 3,
-                  repeat: Infinity,
-                  delay: diamond.delay,
-                  ease: 'easeInOut',
-                }}
-                style={{
-                  x,
-                  y,
-                  transformOrigin: 'center',
-                }}
-              />
-            </motion.g>
-          );
-        })}
+        {diamonds.map((diamond) => (
+          <AnimatedDiamond key={diamond.id} diamond={diamond} scrollProgress={scrollYProgress} />
+        ))}
       </svg>
     </div>
   );
