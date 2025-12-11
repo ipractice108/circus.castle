@@ -34,8 +34,16 @@ export const Retreats: React.FC = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="relative rounded-xl overflow-hidden"
         >
-          <Card gradient className="h-full">
+          {/* Background Image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1000')" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-circus-black via-circus-black/95 to-circus-black/80" />
+
+          <Card gradient className="h-full relative z-10 bg-transparent border-0">
             <div className="flex flex-col h-full">
               <div className="mb-6 p-4 rounded-full bg-circus-magenta/10 border-2 border-circus-magenta w-fit">
                 <Calendar className="w-10 h-10 text-circus-magenta" />
@@ -79,8 +87,16 @@ export const Retreats: React.FC = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="relative rounded-xl overflow-hidden"
         >
-          <Card gradient className="h-full">
+          {/* Background Image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1555881613-a4b71ef421eb?q=80&w=1000')" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-circus-black via-circus-black/95 to-circus-black/80" />
+
+          <Card gradient className="h-full relative z-10 bg-transparent border-0">
             <div className="flex flex-col h-full">
               <div className="mb-6 p-4 rounded-full bg-circus-cyan/10 border-2 border-circus-cyan w-fit">
                 <Camera className="w-10 h-10 text-circus-cyan" />

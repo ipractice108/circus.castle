@@ -11,7 +11,7 @@ export const Hero: React.FC = () => {
       {/* Background Video/Image Placeholder */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-circus-black/70 via-circus-black/50 to-circus-black z-10" />
-        <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2000')] bg-cover bg-center" />
+        <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1610736969095-dd9f6d2c4b6d?q=80&w=2000')] bg-cover bg-center" />
       </div>
 
       {/* Content */}

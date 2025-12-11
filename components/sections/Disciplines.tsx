@@ -12,6 +12,7 @@ const disciplines = [
     details: 'Master the art of aerial performance with professional rigging and safety equipment. From graceful silk movements to powerful strap routines.',
     icon: Sparkles,
     gridClass: 'md:col-span-2 md:row-span-2',
+    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800',
   },
   {
     title: 'Acrobatics & Gymnastics',
@@ -19,6 +20,7 @@ const disciplines = [
     details: 'Build strength, flexibility, and control through structured acrobatic training.',
     icon: Users,
     gridClass: 'md:col-span-1 md:row-span-1',
+    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=800',
   },
   {
     title: 'Trampoline & Trampwall',
@@ -26,6 +28,7 @@ const disciplines = [
     details: 'Experience the thrill of professional trampoline and trampwall training.',
     icon: Dumbbell,
     gridClass: 'md:col-span-1 md:row-span-1',
+    image: 'https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?q=80&w=800',
   },
   {
     title: 'Ballet',
@@ -33,6 +36,7 @@ const disciplines = [
     details: 'Develop the fundamental elegance that underpins all circus disciplines.',
     icon: Music,
     gridClass: 'md:col-span-2 md:row-span-1',
+    image: 'https://images.unsplash.com/photo-1508807526345-15e9b5f4eaff?q=80&w=800',
   },
 ];
 
@@ -70,8 +74,16 @@ export const Disciplines: React.FC = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`${discipline.gridClass} group`}
             >
-              <div className="h-full p-8 rounded-2xl bg-circus-darkGray/80 border border-circus-lightGray/10 hover:border-circus-orange/50 transition-all duration-300 hover:transform hover:scale-105">
-                <div className="flex flex-col h-full">
+              <div className="h-full rounded-2xl overflow-hidden border border-circus-lightGray/10 hover:border-circus-orange/50 transition-all duration-300 hover:transform hover:scale-105 relative">
+                {/* Background Image */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{ backgroundImage: `url('${discipline.image}')` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-circus-black via-circus-black/90 to-circus-black/70" />
+
+                {/* Content */}
+                <div className="relative z-10 p-8 flex flex-col h-full">
                   <div className="mb-4">
                     <Icon className="w-10 h-10 text-circus-orange group-hover:text-circus-cyan transition-colors duration-300" />
                   </div>
