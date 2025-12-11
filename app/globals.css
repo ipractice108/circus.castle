@@ -8,6 +8,10 @@
     --font-inter: 'Inter', sans-serif;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-circus-black text-circus-white font-body antialiased;
   }

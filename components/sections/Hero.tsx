@@ -70,12 +70,12 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
         >
-          <Button variant="primary">
+          <Button variant="primary" href="#testimonials">
             Get 1 Week FREE Trial
           </Button>
-          <Button variant="ghost">
+          <Button variant="ghost" href="#retreats">
             Explore Retreats
           </Button>
         </motion.div>
@@ -85,14 +85,16 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="flex justify-center"
         >
-          <motion.div
+          <motion.a
+            href="#philosophy"
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
+            className="cursor-pointer"
           >
             <ArrowDown className="text-circus-orange w-8 h-8" />
-          </motion.div>
+          </motion.a>
         </motion.div>
       </div>
     </section>

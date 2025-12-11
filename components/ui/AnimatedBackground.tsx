@@ -5,58 +5,35 @@ import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 
 interface Diamond {
   id: number;
-  startX: number;
-  startY: number;
-  centerX: number;
-  centerY: number;
+  x: number;
+  y: number;
   color: string;
-  delay: number;
+  size: number;
+  speed: number;
 }
 
 const colors = ['#F05B30', '#FF3399', '#00A3FF', '#00CC66', '#FF6633'];
 
-// Separate component for each diamond to properly use hooks
-const AnimatedDiamond: React.FC<{ diamond: Diamond; scrollProgress: MotionValue<number> }> = ({
+// Simple diamond component with parallax scroll effect
+const ScrollingDiamond: React.FC<{ diamond: Diamond; scrollProgress: MotionValue<number> }> = ({
   diamond,
   scrollProgress,
 }) => {
-  const x = useTransform(
-    scrollProgress,
-    [0, 0.2, 0.5, 0.8, 1],
-    [diamond.startX, diamond.centerX, diamond.centerX, diamond.centerX, diamond.startX]
-  );
-
-  const y = useTransform(
-    scrollProgress,
-    [0, 0.2, 0.5, 0.8, 1],
-    [diamond.startY, diamond.centerY, diamond.centerY, diamond.centerY, diamond.startY]
-  );
+  // Simple parallax - diamonds move at different speeds based on scroll
+  const y = useTransform(scrollProgress, [0, 1], [diamond.y, diamond.y + diamond.speed]);
 
   return (
-    <motion.g>
-      <motion.path
-        d="M 0 -8 L 8 0 L 0 8 L -8 0 Z"
-        fill={diamond.color}
-        filter="url(#softGlow)"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{
-          opacity: [0.15, 0.4, 0.15],
-          scale: [0.6, 1, 0.6],
-          rotate: [0, 180, 360],
-        }}
-        transition={{
-          duration: 12 + diamond.delay * 3,
-          repeat: Infinity,
-          delay: diamond.delay,
-          ease: 'easeInOut',
-        }}
-        style={{
-          x,
-          y,
-          transformOrigin: 'center',
-        }}
-      />
-    </motion.g>
+    <motion.path
+      d={`M 0 -${diamond.size} L ${diamond.size} 0 L 0 ${diamond.size} L -${diamond.size} 0 Z`}
+      fill={diamond.color}
+      opacity={0.15}
+      filter="url(#softGlow)"
+      style={{
+        x: diamond.x,
+        y,
+        transformOrigin: 'center',
+      }}
+    />
   );
 };
 
@@ -80,25 +57,17 @@ export const AnimatedBackground: React.FC = () => {
 
   useEffect(() => {
     const diamondsData: Diamond[] = [];
-    const gridSize = 12;
-    const centerX = dimensions.width / 2;
-    const centerY = dimensions.height / 2;
+    const count = 60; // Reduced number for cleaner look
 
-    for (let i = 0; i < gridSize; i++) {
-      for (let j = 0; j < gridSize; j++) {
-        const angle = Math.random() * Math.PI * 2;
-        const distance = Math.random() * Math.min(dimensions.width, dimensions.height) * 0.6;
-
-        diamondsData.push({
-          id: i * gridSize + j,
-          startX: centerX + Math.cos(angle) * distance,
-          startY: centerY + Math.sin(angle) * distance,
-          centerX: centerX + (i - gridSize / 2) * 40,
-          centerY: centerY + (j - gridSize / 2) * 40,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          delay: Math.random() * 2,
-        });
-      }
+    for (let i = 0; i < count; i++) {
+      diamondsData.push({
+        id: i,
+        x: Math.random() * dimensions.width,
+        y: Math.random() * dimensions.height * 3, // Spread across scroll height
+        color: colors[Math.floor(Math.random() * colors.length)],
+        size: 6 + Math.random() * 6, // Random size between 6-12
+        speed: 100 + Math.random() * 300, // Different parallax speeds
+      });
     }
 
     setDiamonds(diamondsData);
@@ -106,10 +75,10 @@ export const AnimatedBackground: React.FC = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-      <svg className="w-full h-full opacity-20">
+      <svg className="w-full h-full">
         <defs>
           <filter id="softGlow">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
             <feMerge>
               <feMergeNode in="coloredBlur" />
               <feMergeNode in="SourceGraphic" />
@@ -118,7 +87,7 @@ export const AnimatedBackground: React.FC = () => {
         </defs>
 
         {diamonds.map((diamond) => (
-          <AnimatedDiamond key={diamond.id} diamond={diamond} scrollProgress={scrollYProgress} />
+          <ScrollingDiamond key={diamond.id} diamond={diamond} scrollProgress={scrollYProgress} />
         ))}
       </svg>
     </div>
