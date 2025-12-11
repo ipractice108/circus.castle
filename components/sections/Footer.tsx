@@ -55,13 +55,27 @@ export const Footer: React.FC = () => {
               <MapPin className="text-circus-orange" />
               Location
             </h3>
-            <p className="text-circus-lightGray">
+            <p className="text-circus-lightGray mb-6">
               Circus Castle Bali
               <br />
               Ubud, Bali
               <br />
               Indonesia
             </p>
+
+            {/* Google Maps */}
+            <div className="rounded-lg overflow-hidden border-2 border-circus-lightGray/20 hover:border-circus-orange/50 transition-colors duration-300">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.8899999999994!2d115.2!3d-8.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwMzAnMDAuMCJTIDExNcKwMTInMDAuMCJF!5e0!3m2!1sen!2sid!4v1234567890123!5m2!1sen!2sid"
+                width="100%"
+                height="200"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Circus Castle Bali Location"
+              />
+            </div>
           </motion.div>
 
           {/* Quick Links */}
