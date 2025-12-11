@@ -12,7 +12,7 @@ const disciplines = [
     details: 'Master the art of aerial performance with professional rigging and safety equipment. From graceful silk movements to powerful strap routines.',
     icon: Sparkles,
     gridClass: 'md:col-span-2 md:row-span-2',
-    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800',
+    image: 'https://drive.google.com/uc?export=view&id=1Y7vCFQSJTWabCkpGcbHNwRCJAFYFM7lU',
   },
   {
     title: 'Acrobatics & Gymnastics',

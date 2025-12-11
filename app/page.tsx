@@ -5,17 +5,21 @@ import { Teachers } from '@/components/sections/Teachers';
 import { Retreats } from '@/components/sections/Retreats';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { Footer } from '@/components/sections/Footer';
+import { AnimatedBackground } from '@/components/ui/AnimatedBackground';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <Hero />
-      <Philosophy />
-      <Disciplines />
-      <Teachers />
-      <Retreats />
-      <Testimonials />
-      <Footer />
-    </main>
+    <>
+      <AnimatedBackground />
+      <main className="min-h-screen relative z-10">
+        <Hero />
+        <Philosophy />
+        <Disciplines />
+        <Teachers />
+        <Retreats />
+        <Testimonials />
+        <Footer />
+      </main>
+    </>
   );
 }
