@@ -39,13 +39,18 @@ export const Footer: React.FC = () => {
 
         {/* Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-circus-lightGray/10 pt-12">
-          {/* Location */}
+          {/* Logo & Location */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
+            <img
+              src="https://drive.google.com/uc?export=view&id=1v82E5jnhc6EfsrfThbXeEtlHIexmnqN7"
+              alt="Circus Castle Bali Logo"
+              className="h-12 mb-6"
+            />
             <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
               <MapPin className="text-circus-orange" />
               Location
@@ -129,11 +134,11 @@ export const Footer: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-circus-lightGray text-sm">
             <p>© 2024 Circus Castle Bali. All rights reserved.</p>
-            <p className="font-heading tracking-wide">
-              <span className="text-circus-orange">SPORT</span>{' '}
-              <span className="text-circus-magenta">ART</span>{' '}
-              <span className="text-circus-cyan">FUN</span>
-            </p>
+            <img
+              src="https://drive.google.com/uc?export=view&id=1v82E5jnhc6EfsrfThbXeEtlHIexmnqN7"
+              alt="Circus Castle Bali Logo"
+              className="h-8 opacity-60"
+            />
           </div>
         </div>
       </div>

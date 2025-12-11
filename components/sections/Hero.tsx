@@ -16,16 +16,18 @@ export const Hero: React.FC = () => {
 
       {/* Content */}
       <div className="relative z-20 text-center px-4 max-w-6xl mx-auto">
-        {/* Tagline */}
+        {/* Logo */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-4"
+          className="mb-6"
         >
-          <span className="inline-block px-6 py-2 rounded-full border-2 border-circus-orange text-circus-orange font-heading text-sm tracking-widest uppercase">
-            SPORT ART FUN
-          </span>
+          <img
+            src="https://drive.google.com/uc?export=view&id=1v82E5jnhc6EfsrfThbXeEtlHIexmnqN7"
+            alt="Circus Castle Bali Logo"
+            className="h-16 md:h-20 mx-auto"
+          />
         </motion.div>
 
         {/* Main Headline */}

@@ -92,7 +92,7 @@ export const Retreats: React.FC = () => {
           {/* Background Image */}
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1555881613-a4b71ef421eb?q=80&w=1000')" }}
+            style={{ backgroundImage: "url('https://drive.google.com/uc?export=view&id=1Y7vCFQSJTWabCkpGcbHNwRCJAFYFM7lU')" }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-circus-black via-circus-black/95 to-circus-black/80" />
 
