@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
             <span className="text-circus-orange font-bold">'JUMP'</span> in Direct to reserve your place.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" className="gap-2">
+            <Button variant="primary" className="gap-2" href="https://www.instagram.com/circus.castle.bali/">
               <Instagram className="w-5 h-5" />
               Message on Instagram
             </Button>
@@ -66,7 +66,7 @@ export const Footer: React.FC = () => {
             {/* Google Maps */}
             <div className="rounded-lg overflow-hidden border-2 border-circus-lightGray/20 hover:border-circus-orange/50 transition-colors duration-300">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.8899999999994!2d115.2!3d-8.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwMzAnMDAuMCJTIDExNcKwMTInMDAuMCJF!5e0!3m2!1sen!2sid!4v1234567890123!5m2!1sen!2sid"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.911150470884!2d115.2731758!3d-8.5083511!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23d0002704d5d%3A0xa93dfc82a2366d3!2sCircus%20Castle!5e1!3m2!1sru!2sid!4v1765469063829!5m2!1sru!2sid"
                 width="100%"
                 height="200"
                 style={{ border: 0 }}
@@ -123,7 +123,7 @@ export const Footer: React.FC = () => {
             </h3>
             <div className="flex gap-4">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/circus.castle.bali/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-full bg-circus-black border border-circus-lightGray/20 hover:border-circus-orange hover:text-circus-orange transition-all"
