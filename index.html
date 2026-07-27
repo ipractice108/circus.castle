@@ -469,6 +469,28 @@ footer{border-top:1px solid var(--hair);background:var(--night);padding-block:cl
   .sw{padding:6px 11px 6px 7px;font-size:9.5px}
 }
 
+/* ---------- phone: fit the whole pitch above the fold ----------
+   The hero stack (logo, eyebrow, headline, lede, both CTAs) ran 754px tall
+   against a 667px screen, so the buttons fell off. The headline was the cost:
+   at its 44px floor "Eight metres" and "middle of Ubud" each wrapped to two
+   lines. Letting it scale down keeps every line single and buys back ~100px.
+   These rules sit after .mobile-logo's own declaration so they win on order. */
+@media(max-width:640px){
+  .hero{padding-block:24px clamp(28px,5vw,58px)}
+  .hero h1{font-size:clamp(30px,9.6vw,44px)}
+  .mobile-logo{width:68px;margin-bottom:14px}
+  .hero-sub{margin-top:18px}
+  .hero-cta{margin-top:20px}
+  .specs{margin-top:clamp(28px,6vw,44px)}
+}
+@media(max-width:360px){
+  .hero{padding-block:18px 24px}
+  .mobile-logo{width:56px;margin-bottom:12px}
+  .hero .eyebrow{letter-spacing:.14em}
+  .hero-sub{margin-top:14px}
+  .hero-cta{margin-top:16px}
+}
+
 
 /* ---------- interactive grounds map ---------- */
 .gmap{position:relative;aspect-ratio:16/10;border:1px solid var(--hair);border-radius:3px;overflow:hidden;background:#12100e}
