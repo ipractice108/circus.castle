@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Circus Castle Bali — eight metres of air in the middle of Ubud</title>
+<meta name="description" content="Aerial school, professional rig and castle residence in central Ubud. Train, live and perform 365 days a year.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CIRCUS CASTLE BALI — visual prototype
+   Palette : brand deck — warm black #181310 + magenta / cyan / green / orange
+   Type    : Avenir Next (brand face) with Jost as the web fallback
+   Signature: the silk — a scroll rail you can climb
+   ============================================================ */
+
+:root{
+  /* palette lifted from the brand deck */
+  --ink:#181310;
+  --ink-2:#231f20;
+  --panel:#201915;
+  --magenta:#f44aad;
+  --cyan:#00adef;
+  --green:#00a650;
+  --orange:#f0471e;
+  --brass:#f44aad;            /* primary accent */
+  --brass-dim:rgba(244,74,173,.5);
+  --velvet:#231f20;
+  --velvet-2:#2b2523;
+  --jungle:#10322a;
+  --night:#181310;
+  --chalk:#ffffff;
+  --dust:rgba(255,255,255,.62);
+  --hair:rgba(255,255,255,.14);
+  --silk-a:#f0471e;
+  --silk-b:#f44aad;
+  --silk-c:#00adef;
+
+  --display:"Avenir Next","Avenir","Jost",system-ui,sans-serif;
+  --body:"Avenir Next","Avenir","Jost",system-ui,sans-serif;
+  --mono:"Avenir Next","Avenir","Jost",system-ui,sans-serif;
+
+  --pad:clamp(20px,5vw,72px);
+  --rail:96px;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--night);color:var(--chalk);
+  font-family:var(--body);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;background-image:var(--grain);
+  opacity:.28;pointer-events:none;z-index:9999;mix-blend-mode:overlay;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:2px}
+
+/* ---------- type ---------- */
+h1,h2,h3{font-family:var(--display);font-weight:800;margin:0;line-height:.92;letter-spacing:-.02em;text-transform:uppercase}
+h1{font-size:clamp(44px,8.4vw,124px);font-weight:900;letter-spacing:-.035em}
+h2{font-size:clamp(32px,5.2vw,70px);font-weight:900;letter-spacing:-.03em}
+h3{font-size:clamp(21px,2.2vw,29px)}
+p{margin:0 0 1em}
+.eyebrow{
+  font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--brass);display:flex;align-items:center;gap:12px;margin:0 0 22px;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--brass);flex:none}
+.lead{font-size:clamp(17px,1.6vw,20px);color:var(--dust);max-width:60ch}
+.mono{font-family:var(--mono)}
+.dim{color:var(--dust)}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1360px;margin:0 auto;padding-inline:var(--pad)}
+section{position:relative;padding-block:clamp(72px,9vw,140px)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;margin-bottom:clamp(34px,4vw,60px)}
+@media(min-width:900px){
+  .sec-head{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:end;gap:48px}
+}
+.rule{height:1px;background:var(--hair);border:0;margin:0}
+
+/* ---------- header ---------- */
+header{
+  position:sticky;top:0;z-index:100;backdrop-filter:blur(14px);
+  background:linear-gradient(180deg,rgba(24,19,16,.95),rgba(24,19,16,.7));
+  border-bottom:1px solid var(--hair);
+}
+.bar{display:flex;align-items:center;gap:22px;height:66px;max-width:1360px;margin:0 auto;padding-inline:var(--pad)}
+.brand{display:flex;align-items:center;gap:11px;margin-right:auto;flex:none}
+.brand .logo-mini{width:32px;height:32px}
+.brand b{font-family:var(--display);font-size:16px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.brand span{font-family:var(--mono);font-weight:700;font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--magenta);display:block;margin-top:3px}
+.nav{display:none;gap:26px}
+@media(min-width:1080px){.nav{display:flex}}
+.nav a{font-size:13.5px;letter-spacing:.04em;color:var(--dust);position:relative;padding-block:6px}
+.nav a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:linear-gradient(90deg,var(--silk-a),var(--silk-b));transition:width .3s}
+.nav a:hover{color:var(--chalk)}
+.nav a:hover::after{width:100%}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:13px 22px;border-radius:999px;border:1px solid transparent;cursor:pointer;
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  transition:transform .18s,background .25s,color .25s,border-color .25s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn--brass{background:var(--magenta);color:#fff;font-weight:800}
+.btn--brass:hover{background:#ff63bd}
+.btn--ghost{border-color:var(--hair);color:var(--chalk)}
+.btn--ghost:hover{border-color:var(--brass);color:var(--brass)}
+.btn--sm{padding:10px 16px;font-size:11px}
+.bar .btn{flex:none;padding:11px 18px}
+
+.burger{display:grid;place-items:center;width:42px;height:42px;background:none;border:1px solid var(--hair);border-radius:50%;cursor:pointer}
+@media(min-width:1080px){.burger{display:none}}
+.burger i{display:block;width:15px;height:1.5px;background:var(--chalk);position:relative}
+.burger i::before,.burger i::after{content:"";position:absolute;left:0;width:15px;height:1.5px;background:var(--chalk)}
+.burger i::before{top:-5px}.burger i::after{top:5px}
+.drawer{
+  position:fixed;inset:0;z-index:200;background:var(--night);display:none;
+  flex-direction:column;justify-content:center;padding:var(--pad);
+}
+.drawer.open{display:flex}
+.drawer a{font-family:var(--display);font-size:clamp(28px,7vw,44px);text-transform:uppercase;padding:9px 0;border-bottom:1px solid var(--hair)}
+.drawer .close{position:absolute;top:18px;right:var(--pad);background:none;border:1px solid var(--hair);border-radius:50%;width:42px;height:42px;cursor:pointer;font-size:18px}
+
+/* ---------- the silk rail (signature) ---------- */
+.silkrail{position:fixed;left:34px;top:0;bottom:0;width:var(--rail);z-index:90;display:none;pointer-events:none}
+@media(min-width:1180px){.silkrail{display:block}}
+.silkrail .track{position:absolute;left:11px;top:14vh;bottom:14vh;width:2px;background:rgba(244,239,233,.11);overflow:hidden;border-radius:2px}
+.silkrail .fill{position:absolute;left:0;top:0;width:100%;height:0;background:linear-gradient(180deg,var(--silk-a),var(--silk-b) 55%,var(--silk-c));transition:height .12s linear}
+.silkrail ol{position:absolute;left:0;top:14vh;bottom:14vh;margin:0;padding:0;list-style:none;display:flex;flex-direction:column;justify-content:space-between;pointer-events:auto}
+.silkrail li{position:relative}
+.silkrail button{
+  display:flex;align-items:center;gap:12px;background:none;border:0;cursor:pointer;padding:4px 0;
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:transparent;transition:color .25s;
+}
+.silkrail .knot{width:22px;height:22px;flex:none;display:grid;place-items:center}
+.silkrail .knot::after{content:"";width:7px;height:7px;border-radius:50%;background:rgba(244,239,233,.3);transition:all .3s}
+.silkrail button:hover{color:var(--dust)}
+.silkrail button[aria-current="true"]{color:var(--brass)}
+.silkrail button[aria-current="true"] .knot::after{width:11px;height:11px;background:var(--brass);box-shadow:0 0 0 4px rgba(244,74,173,.2)}
+
+/* ---------- hero ---------- */
+.hero{min-height:min(100svh,900px);display:flex;align-items:flex-end;padding-block:clamp(60px,10vw,110px) clamp(34px,5vw,58px);overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:-2;
+  background:
+    radial-gradient(110% 85% at 84% 6%,rgba(244,74,173,.34),transparent 56%),
+    radial-gradient(85% 70% at 6% 94%,rgba(0,173,239,.26),transparent 60%),
+    linear-gradient(160deg,#231f20,#181310 60%,#181310);
+}
+.hero-bg::after{content:"";position:absolute;inset:0;background:var(--grain);opacity:.5;mix-blend-mode:soft-light}
+.hero-photo{
+  position:absolute;right:0;top:0;bottom:0;width:46%;z-index:-1;
+  background:linear-gradient(200deg,#f44aad,#5b1a41 45%,#181310 80%);
+  -webkit-mask-image:linear-gradient(270deg,#000 30%,transparent 96%);
+  mask-image:linear-gradient(270deg,#000 30%,transparent 96%);
+  opacity:.9;
+}
+.hero-photo::after{content:"PHOTO 01 — silks under the castle lamps";position:absolute;left:18px;bottom:18px;font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:rgba(244,239,233,.35);text-transform:uppercase}
+@media(max-width:860px){.hero-photo{width:100%;opacity:.42;-webkit-mask-image:linear-gradient(0deg,#000 20%,transparent 88%);mask-image:linear-gradient(0deg,#000 20%,transparent 88%)}}
+.hero .wrap{width:100%;position:relative;z-index:2}
+#heroMosaic{cursor:default}
+.hero h1{max-width:15ch}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln>span{display:block;transform:translateY(105%);animation:drop .95s cubic-bezier(.16,.84,.3,1) forwards}
+.hero h1 .ln:nth-child(2)>span{animation-delay:.1s}
+.hero h1 .ln:nth-child(3)>span{animation-delay:.2s}
+.hero h1 .ln:nth-child(4)>span{animation-delay:.3s}
+.hero h1 em{font-style:normal;font-weight:900;color:var(--magenta);letter-spacing:-.035em}
+@keyframes drop{to{transform:translateY(0)}}
+.hero-sub{margin-top:26px;max-width:46ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.specs{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:clamp(44px,6vw,72px);background:var(--hair);border-block:1px solid var(--hair)}
+@media(min-width:760px){.specs{grid-template-columns:repeat(4,1fr)}}
+.specs div{background:var(--night);padding:18px 20px}
+.specs b{display:block;font-family:var(--display);font-size:clamp(24px,2.6vw,34px);font-weight:700;line-height:1}
+.specs span{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dust);display:block;margin-top:8px}
+
+/* ---------- marquee ---------- */
+.marquee{border-block:1px solid var(--hair);background:var(--velvet);overflow:hidden;padding-block:0}
+.marquee li:nth-child(4n+1){--c:var(--magenta)}
+.marquee li:nth-child(4n+2){--c:var(--cyan)}
+.marquee li:nth-child(4n+3){--c:var(--green)}
+.marquee li:nth-child(4n){--c:var(--orange)}
+.marquee ul{display:flex;gap:0;margin:0;padding:0;list-style:none;width:max-content;animation:slide 38s linear infinite}
+.marquee li{font-family:var(--display);font-size:clamp(18px,2.1vw,26px);text-transform:uppercase;letter-spacing:.04em;padding:15px 26px;display:flex;align-items:center;gap:26px;white-space:nowrap}
+.marquee li::after{content:"";width:8px;height:8px;background:var(--c,var(--magenta));border-radius:50%;flex:none}
+@keyframes slide{to{transform:translateX(-50%)}}
+.marquee:hover ul{animation-play-state:paused}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,.84,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- doors ---------- */
+.doors{display:grid;gap:14px}
+@media(min-width:900px){.doors{grid-template-columns:repeat(3,1fr)}}
+.door{
+  position:relative;border:1px solid var(--hair);border-radius:3px;overflow:hidden;
+  background:linear-gradient(175deg,var(--velvet),rgba(20,16,28,.4));
+  padding:26px 24px 24px;min-height:330px;display:flex;flex-direction:column;
+  transition:transform .35s cubic-bezier(.16,.84,.3,1),border-color .35s;
+}
+.door::before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:var(--dc,var(--magenta));transform:scaleX(0);transform-origin:left;transition:transform .45s}
+.door:nth-child(1){--dc:var(--cyan)}
+.door:nth-child(2){--dc:var(--magenta)}
+.door:nth-child(3){--dc:var(--green)}
+.door:hover{border-color:var(--dc)}
+.door .num{color:var(--dc)}
+.door .price{color:var(--dc)}
+.door:hover{transform:translateY(-6px);border-color:rgba(225,169,78,.42)}
+.door:hover::before{transform:scaleX(1)}
+.door .num{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--brass);text-transform:uppercase}
+.door h3{margin:16px 0 10px}
+.door p{color:var(--dust);font-size:15px}
+.door ul{margin:0 0 22px;padding:0;list-style:none;font-size:14px;color:var(--dust)}
+.door li{padding:7px 0;border-top:1px solid var(--hair);display:flex;justify-content:space-between;gap:14px}
+.door .foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.door .price{font-family:var(--mono);font-size:13px;color:var(--brass)}
+
+/* ---------- photo rail ---------- */
+.rail-scroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--brass-dim) transparent}
+.rail-scroll::-webkit-scrollbar{height:4px}
+.rail-scroll::-webkit-scrollbar-thumb{background:var(--brass-dim);border-radius:4px}
+.shot{position:relative;flex:none;width:min(78vw,380px);aspect-ratio:4/5;border-radius:3px;overflow:hidden;scroll-snap-align:start;border:1px solid var(--hair)}
+.shot.wide{width:min(90vw,600px);aspect-ratio:16/11}
+.shot::after{content:"";position:absolute;inset:0;background:var(--grain);opacity:.5;mix-blend-mode:overlay}
+.shot .tag{position:absolute;left:14px;bottom:13px;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,239,233,.82);background:rgba(24,19,16,.55);backdrop-filter:blur(6px);padding:6px 10px;border-radius:999px}
+.p1{background:linear-gradient(200deg,#f44aad,#5c1b46 60%,#181310)}
+.p2{background:linear-gradient(160deg,#00adef,#0b3550 62%,#181310)}
+.p3{background:linear-gradient(220deg,#f0471e,#4d1c10 62%,#181310)}
+.p4{background:linear-gradient(140deg,#00a650,#0d3524 70%,#181310)}
+.p5{background:linear-gradient(190deg,#f44aad,#00adef 55%,#181310)}
+.p6{background:linear-gradient(170deg,#f0471e,#f44aad 60%,#231f20)}
+.p7{background:linear-gradient(210deg,#00a650,#00adef 60%,#181310)}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+.tab{
+  background:none;border:1px solid var(--hair);border-radius:999px;padding:10px 18px;cursor:pointer;
+  font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--dust);
+  transition:all .25s;
+}
+.tab:hover{color:var(--chalk);border-color:rgba(244,239,233,.35)}
+.tab[aria-selected="true"]{background:var(--magenta);border-color:var(--magenta);color:#fff;font-weight:800}
+.panel[hidden]{display:none}
+
+/* ---------- price cards ---------- */
+.cards{display:grid;gap:14px}
+@media(min-width:720px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1100px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{
+  border:1px solid var(--hair);border-radius:3px;padding:24px 22px;background:rgba(35,31,32,.62);
+  display:flex;flex-direction:column;transition:border-color .3s,background .3s;
+}
+.card:hover{border-color:rgba(225,169,78,.4);background:rgba(43,37,35,.9)}
+.card.feature{background:linear-gradient(170deg,rgba(244,74,173,.18),rgba(35,31,32,.7));border-color:var(--magenta)}
+.card .kicker{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:14px}
+.card h3{font-size:24px;margin-bottom:6px}
+.card .freq{font-family:var(--mono);font-size:11px;color:var(--dust);letter-spacing:.1em;text-transform:uppercase}
+.card ul{margin:18px 0 22px;padding:0;list-style:none;font-size:14.5px;color:var(--dust)}
+.card ul li{padding:6px 0 6px 20px;position:relative}
+.card ul li::before{content:"";position:absolute;left:0;top:14px;width:8px;height:1px;background:var(--brass)}
+.card .amt{margin-top:auto;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--hair)}
+.card .amt b{font-family:var(--display);font-size:30px;font-weight:700;line-height:1}
+.card .amt span{font-family:var(--mono);font-size:11px;color:var(--dust);letter-spacing:.1em}
+.card .amt s{font-family:var(--mono);font-size:12px;color:rgba(244,239,233,.34)}
+
+.list-price{border-top:1px solid var(--hair)}
+.list-price div{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;padding:16px 0;border-bottom:1px solid var(--hair)}
+.list-price b{font-size:16px;font-weight:600;font-family:var(--body)}
+.list-price em{font-style:normal;color:var(--dust);font-size:14px;flex:1;min-width:180px}
+.list-price .v{font-family:var(--mono);font-size:14px;color:var(--brass);white-space:nowrap}
+
+/* ---------- schedule ---------- */
+.sched{border:1px solid var(--hair);border-radius:3px;overflow:hidden;background:rgba(35,31,32,.5)}
+.sched .days{display:flex;overflow-x:auto;border-bottom:1px solid var(--hair)}
+.sched .days button{
+  flex:1;min-width:86px;background:none;border:0;border-right:1px solid var(--hair);cursor:pointer;padding:15px 8px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dust);transition:all .25s;
+}
+.sched .days button:hover{background:rgba(244,239,233,.05);color:var(--chalk)}
+.sched .days button[aria-selected="true"]{background:var(--cyan);color:#0b1d26;font-weight:800}
+.slot{display:grid;grid-template-columns:104px 1fr;gap:10px 20px;padding:16px 20px;border-bottom:1px solid var(--hair);align-items:center}
+@media(min-width:820px){.slot{grid-template-columns:120px 1fr 190px 110px}}
+.slot:last-child{border-bottom:0}
+.slot .t{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--cyan)}
+.slot .n{font-size:16px;font-weight:500}
+.slot .n small{display:block;color:var(--dust);font-size:13px;font-weight:400;margin-top:2px}
+.slot .who{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dust)}
+.slot .go{justify-self:start}
+@media(min-width:820px){.slot .go{justify-self:end}}
+.note{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--dust);margin-top:16px;display:flex;gap:10px;align-items:flex-start}
+.note::before{content:"↳";color:var(--brass)}
+
+/* ---------- camp calculator ---------- */
+.camp{display:grid;gap:14px}
+@media(min-width:1000px){.camp{grid-template-columns:1.25fr .75fr;align-items:start}}
+.rooms{display:grid;gap:10px}
+.room{
+  display:grid;grid-template-columns:1fr auto;gap:6px 18px;align-items:center;cursor:pointer;
+  border:1px solid var(--hair);border-radius:3px;padding:18px 20px;background:rgba(35,31,32,.55);transition:all .25s;
+}
+.room:hover{border-color:rgba(244,239,233,.3)}
+.room input{position:absolute;opacity:0;pointer-events:none}
+.room:has(input:checked){border-color:var(--cyan);background:linear-gradient(120deg,rgba(0,173,239,.18),rgba(35,31,32,.7))}
+.room .rn{font-size:18px;font-weight:600;display:flex;align-items:center;gap:11px}
+.room .dot{width:9px;height:9px;border-radius:50%;border:1px solid var(--dust);flex:none}
+.room:has(input:checked) .dot{background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,173,239,.25)}
+.room .rp{font-family:var(--mono);font-weight:700;font-size:14px;color:var(--cyan);white-space:nowrap}
+.room small{grid-column:1/-1;color:var(--dust);font-size:13.5px}
+.calc{border:1px solid rgba(0,173,239,.4);border-radius:3px;padding:26px 24px;background:linear-gradient(175deg,rgba(35,31,32,.95),rgba(24,19,16,.75));position:sticky;top:88px}
+.stepper{display:flex;align-items:center;gap:14px;margin:14px 0 22px}
+.stepper button{width:38px;height:38px;border-radius:50%;border:1px solid var(--hair);background:none;cursor:pointer;font-size:18px;line-height:1;transition:all .2s}
+.stepper button:hover{border-color:var(--brass);color:var(--brass)}
+.stepper output{font-family:var(--display);font-size:34px;font-weight:700;min-width:2.4ch;text-align:center}
+.stepper .unit{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dust)}
+.total{border-top:1px solid var(--hair);padding-top:18px;margin-top:18px}
+.total .big{font-family:var(--display);font-size:clamp(30px,4vw,42px);font-weight:900;line-height:1;color:var(--cyan)}
+.total .cap{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dust);margin-bottom:8px}
+.incl{margin:20px 0 0;padding:0;list-style:none;font-size:14px;color:var(--dust)}
+.incl li{padding:5px 0 5px 20px;position:relative}
+.incl li::before{content:"✦";position:absolute;left:0;color:var(--brass);font-size:10px;top:8px}
+
+/* ---------- timeline ---------- */
+.time{position:relative;margin-top:20px}
+.time::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--orange),var(--magenta),var(--cyan),var(--green));opacity:.7}
+.ev{position:relative;padding:0 0 30px 44px}
+.ev::before{content:"";position:absolute;left:4px;top:7px;width:11px;height:11px;border-radius:50%;background:var(--night);border:2px solid var(--orange)}
+.ev.now::before{background:var(--orange);box-shadow:0 0 0 5px rgba(240,71,30,.22)}
+.ev .when{font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+.ev h3{font-size:22px;margin:6px 0 6px}
+.ev p{color:var(--dust);font-size:14.5px;margin:0;max-width:56ch}
+
+/* ---------- coaches ---------- */
+.coaches{display:grid;gap:14px}
+@media(min-width:880px){.coaches{grid-template-columns:1fr 1fr}}
+.coach{border:1px solid var(--hair);border-radius:3px;overflow:hidden;background:rgba(35,31,32,.55);display:flex;flex-direction:column}
+.coach .ph{aspect-ratio:16/10;position:relative}
+.coach .body{padding:24px 22px}
+.coach h3{font-size:23px;margin-bottom:10px}
+.coach ul{margin:14px 0 0;padding:0;list-style:none;font-size:14px;color:var(--dust)}
+.coach li{padding:7px 0;border-top:1px solid var(--hair);display:grid;grid-template-columns:74px 1fr;gap:14px}
+.coach li i{font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--brass-dim)}
+
+/* ---------- faq ---------- */
+.faq{border-top:1px solid var(--hair)}
+.faq details{border-bottom:1px solid var(--hair)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:22px 40px 22px 0;position:relative;
+  font-family:var(--display);font-size:clamp(19px,2vw,25px);font-weight:600;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);color:var(--brass);font-family:var(--mono);font-size:22px;transition:transform .3s}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq .ans{padding:0 0 24px;color:var(--dust);max-width:72ch}
+
+/* ---------- booking ---------- */
+.book{background:linear-gradient(180deg,rgba(0,173,239,.12),transparent)}
+.form-grid{display:grid;gap:14px}
+@media(min-width:1000px){.form-grid{grid-template-columns:1.3fr .7fr;align-items:start}}
+.panel-box{border:1px solid var(--hair);border-radius:3px;padding:clamp(22px,3vw,34px);background:rgba(35,31,32,.62)}
+.steps{display:flex;gap:6px;margin-bottom:26px;flex-wrap:wrap}
+.steps span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dust);border:1px solid var(--hair);border-radius:999px;padding:7px 14px}
+.steps span[data-on="1"]{border-color:var(--brass);color:var(--brass)}
+.field{margin-bottom:16px}
+.field label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dust);margin-bottom:8px}
+.field input,.field select,.field textarea{
+  width:100%;background:rgba(24,19,16,.7);border:1px solid var(--hair);border-radius:2px;padding:13px 14px;font-size:15px;transition:border-color .25s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--brass);outline:none}
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--brass) 50%),linear-gradient(135deg,var(--brass) 50%,transparent 50%);background-position:calc(100% - 19px) 21px,calc(100% - 14px) 21px;background-size:5px 5px;background-repeat:no-repeat}
+.two{display:grid;gap:14px}
+@media(min-width:620px){.two{grid-template-columns:1fr 1fr}}
+.pays{display:grid;gap:8px;grid-template-columns:repeat(2,1fr);margin-top:8px}
+.pay{border:1px solid var(--hair);border-radius:2px;padding:14px;cursor:pointer;font-size:14px;text-align:center;transition:all .25s;background:rgba(24,19,16,.55)}
+.pay:hover{border-color:rgba(244,239,233,.35)}
+.pay.on{border-color:var(--brass);color:var(--brass)}
+.summary{border:1px solid rgba(0,166,80,.4);border-radius:3px;padding:26px 24px;background:linear-gradient(175deg,rgba(0,166,80,.16),rgba(24,19,16,.8));position:sticky;top:88px}
+.summary dl{margin:18px 0 0;display:grid;grid-template-columns:1fr auto;gap:12px 16px;font-size:14px}
+.summary dt{color:var(--dust);font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
+.summary dd{margin:0;text-align:right}
+.msg{margin-top:16px;font-family:var(--mono);font-weight:600;font-size:11.5px;line-height:1.7;color:var(--green);border:1px dashed rgba(0,166,80,.5);padding:12px;border-radius:2px}
+.msg[hidden]{display:none}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--hair);background:var(--night);padding-block:clamp(48px,6vw,80px) 34px}
+.fgrid{display:grid;gap:34px}
+@media(min-width:900px){.fgrid{grid-template-columns:1.4fr .6fr .6fr .8fr}}
+.fgrid h4{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin:0 0 16px}
+.fgrid ul{margin:0;padding:0;list-style:none;font-size:14.5px;color:var(--dust)}
+.fgrid li{padding:5px 0}
+.fgrid a:hover{color:var(--brass)}
+.fbot{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;margin-top:44px;padding-top:22px;border-top:1px solid var(--hair);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:rgba(244,239,233,.4);text-transform:uppercase}
+.big-word{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(48px,14vw,190px);line-height:.8;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);margin-top:40px}
+
+
+/* ---------- brand mosaic (the diamonds) ---------- */
+.mosaic{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.mosaic.live{pointer-events:auto;cursor:crosshair;touch-action:none}
+.mband{position:relative;height:clamp(64px,9vw,104px);overflow:hidden;border-block:1px solid var(--hair);background:var(--ink)}
+.mband canvas{position:absolute;inset:0}
+.playfield{position:relative;height:clamp(220px,34vw,380px);overflow:hidden;border:1px solid var(--hair);border-radius:3px;background:var(--ink-2)}
+.playfield .hint{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:2;
+  font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dust);background:rgba(24,19,16,.72);backdrop-filter:blur(6px);padding:9px 16px;border-radius:999px;
+  border:1px solid var(--hair);transition:opacity .5s;pointer-events:none}
+.playfield.touched .hint{opacity:0}
+.swatches{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.sw{display:flex;align-items:center;gap:9px;border:1px solid var(--hair);border-radius:999px;padding:8px 15px 8px 9px;
+  font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dust)}
+.sw i{width:13px;height:13px;transform:rotate(45deg);flex:none;display:block}
+
+/* ---------- badge lockup ---------- */
+.logo-full{width:100%;height:auto;display:block}
+.logo-mini{width:30px;height:30px;flex:none;display:block}
+.badge-wrap{position:relative;width:clamp(150px,18vw,220px);flex:none;transition:transform .5s cubic-bezier(.16,.84,.3,1)}
+.badge-wrap:hover{transform:rotate(-4deg) scale(1.03)}
+.hero-badge{position:absolute;right:var(--pad);top:clamp(90px,12vw,130px);z-index:3;width:clamp(120px,15vw,210px)}
+@media(max-width:900px){.hero-badge{display:none}}
+.logo-slot{margin-top:14px;font-family:var(--mono);font-weight:600;font-size:10.5px;letter-spacing:.1em;color:rgba(255,255,255,.4);text-transform:uppercase}
+
+
+/* ---------- phone: keep the pattern quiet ---------- */
+@media(max-width:760px){
+  .mband{height:38px}
+  .playfield{height:200px}
+  .playfield .hint{bottom:12px;font-size:9.5px;letter-spacing:.14em;padding:7px 12px}
+  .hero .specs div{padding:14px 15px}
+  .swatches{gap:6px}
+  .sw{padding:6px 11px 6px 7px;font-size:9.5px}
+  .mobile-logo{display:block;width:104px;margin:0 0 20px}
+}
+.mobile-logo{display:none}
+
+
+/* ---------- interactive grounds map ---------- */
+.gmap{position:relative;aspect-ratio:16/10;border:1px solid var(--hair);border-radius:3px;overflow:hidden;background:#12100e}
+@media(max-width:760px){.gmap{aspect-ratio:4/5}}
+.gmap .plan{position:absolute;inset:0;width:100%;height:100%}
+.gmap .photo-layer{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0}
+.hot{position:absolute;transform:translate(-50%,-50%);z-index:3;background:none;border:0;padding:0;cursor:pointer;
+  width:38px;height:38px;display:grid;place-items:center}
+.hot i{width:22px;height:22px;transform:rotate(45deg);background:var(--hc,var(--magenta));display:block;
+  box-shadow:0 0 0 0 var(--hc,var(--magenta));transition:transform .3s cubic-bezier(.16,.84,.3,1),box-shadow .3s}
+.hot::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid transparent;transition:border-color .3s}
+.hot:hover i,.hot:focus-visible i{transform:rotate(45deg) scale(1.35);box-shadow:0 0 0 7px rgba(255,255,255,.1)}
+.hot[aria-expanded="true"] i{transform:rotate(90deg) scale(1.35)}
+.hot b{position:absolute;font-family:var(--mono);font-weight:800;font-size:10px;color:#181310;pointer-events:none}
+.hot span{position:absolute;left:50%;top:calc(100% + 4px);transform:translateX(-50%);white-space:nowrap;
+  font-family:var(--mono);font-weight:700;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--chalk);background:rgba(18,16,14,.82);padding:4px 8px;border-radius:999px;opacity:0;transition:opacity .25s;pointer-events:none}
+.hot:hover span,.hot:focus-visible span{opacity:1}
+@media(max-width:760px){.hot span{display:none}}
+
+.gpanel{position:absolute;right:0;top:0;bottom:0;width:min(88%,360px);z-index:5;
+  background:rgba(24,19,16,.94);backdrop-filter:blur(14px);border-left:1px solid var(--hair);
+  padding:26px 24px;transform:translateX(101%);transition:transform .45s cubic-bezier(.16,.84,.3,1);
+  display:flex;flex-direction:column;overflow-y:auto}
+.gpanel.open{transform:none}
+@media(max-width:760px){
+  .gpanel{right:0;left:0;top:auto;width:auto;height:64%;border-left:0;border-top:1px solid var(--hair);
+    transform:translateY(101%);border-radius:14px 14px 0 0}
+  .gpanel.open{transform:none}
+}
+.gpanel .shot{width:100%;aspect-ratio:4/3;margin-bottom:18px}
+.gpanel h3{font-size:23px;margin-bottom:8px}
+.gpanel p{color:var(--dust);font-size:14.5px}
+.gpanel .meta{margin:0 0 18px;padding:0;list-style:none;font-size:13.5px;color:var(--dust);border-top:1px solid var(--hair)}
+.gpanel .meta li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--hair)}
+.gpanel .meta i{font-style:normal;font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gc,var(--magenta))}
+.gpanel .close{position:absolute;right:16px;top:16px;width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--hair);background:rgba(24,19,16,.6);cursor:pointer;font-size:15px;line-height:1}
+.gpanel .acts{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap;padding-top:18px}
+.gkey{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.gkey button{display:flex;align-items:center;gap:8px;border:1px solid var(--hair);background:none;cursor:pointer;
+  border-radius:999px;padding:7px 14px 7px 9px;color:var(--dust);
+  font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.13em;text-transform:uppercase;transition:all .25s}
+.gkey button:hover{color:var(--chalk);border-color:rgba(255,255,255,.35)}
+.gkey button.on{border-color:var(--kc);color:var(--kc)}
+.gkey i{width:11px;height:11px;transform:rotate(45deg);background:var(--kc);display:block;flex:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .rv{opacity:1;transform:none}
+  .hero h1 .ln>span{transform:none}
+  .badge-wrap:hover{transform:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logoFull" viewBox="115.3 137.1 293.3 293.3"> <path fill="#f44aad" d="M 261.89 430.41 L 115.26 283.77 L 261.89 137.14 L 408.52 283.77 Z M 261.89 430.41 "/> <path fill="#181310" d="M 295.67 245.2 C 294.36 245.53 293.1 245.68 291.91 245.68 C 283.85 245.68 278.51 238.84 276.54 234.51 C 275.93 233.71 274.19 231.82 272.63 231.7 C 272.24 231.68 271.64 231.73 270.86 232.53 C 269.85 233.56 269.47 235.15 269.8 237 C 270.46 240.74 274.23 246.19 282.8 250.26 C 283.78 250.73 284.27 251.84 283.95 252.88 C 283.64 253.91 282.62 254.56 281.54 254.41 C 274.85 253.41 264.21 251.94 262.34 251.94 C 261.26 251.94 259.65 253.41 258.91 254.4 L 257.59 256.14 L 254.09 253.54 L 255.39 251.78 C 255.71 251.35 258.63 247.56 262.34 247.56 C 263.71 247.56 268.05 248.1 272.35 248.68 C 268.6 245.38 266.17 241.59 265.49 237.77 C 264.91 234.48 265.7 231.53 267.73 229.46 C 269.64 227.51 271.63 227.23 272.98 227.34 C 273.74 227.39 274.47 227.59 275.14 227.88 C 273.42 224.24 269.93 221.09 266.41 218.62 L 264.43 220.61 C 263.3 219.79 261.92 218.87 260.45 218.03 L 279.72 198.75 L 283 202.04 L 278.98 206.05 L 281.06 208.12 L 285.2 203.99 L 287.63 206.43 L 289.81 208.6 L 287.16 211.25 L 284.98 209.08 L 283.5 210.56 L 285.67 212.74 L 283.02 215.39 L 280.85 213.21 L 279.36 214.7 L 281.54 216.87 L 278.89 219.52 L 276.71 217.35 L 276.23 216.87 L 274.27 214.91 L 278.41 210.78 L 276.34 208.7 L 269.55 215.49 C 275.22 219.64 280.8 225.6 280.61 232.89 C 281.57 234.82 286.18 243.08 294.6 240.95 C 299.41 239.73 299.94 236.32 299.83 234.39 C 299.62 230.89 297.22 227.64 294.57 227.3 C 292.06 226.96 290.89 228.13 290.63 229.34 C 290.42 230.31 290.79 231.63 292.5 232.14 C 293.66 232.48 294.32 233.7 293.98 234.86 C 293.63 236.02 292.41 236.68 291.25 236.34 C 287.18 235.13 285.7 231.45 286.35 228.42 C 287.01 225.32 290.04 222.28 295.15 222.96 C 299.89 223.58 303.87 228.49 304.2 234.13 C 304.52 239.55 301.25 243.79 295.67 245.2 M 235.47 218.86 C 231.78 213.29 231.89 212.95 232.25 211.93 L 232.6 210.91 L 233.64 210.55 C 235.4 210.02 236.04 209.35 236.08 209.18 C 236.1 209.06 235.88 208.38 234.53 207.24 L 233 205.95 L 234.15 204.31 C 234.4 203.96 240.31 195.65 248.22 196.75 C 255.14 197.7 259.02 202.22 259.31 209.52 C 260.12 209.89 261.23 210.43 262.53 211.12 L 259.28 214.37 C 257.54 213.49 256.37 213 256.32 212.98 L 254.29 212.15 L 254.95 210.55 C 255 203.02 250.83 201.53 247.62 201.09 C 243.95 200.59 240.6 203.56 238.89 205.43 C 240.2 206.97 240.69 208.53 240.37 210.07 C 240.07 211.54 239.03 212.79 237.38 213.72 C 237.73 214.3 238.15 214.95 238.56 215.59 L 242.55 216.05 L 244.74 213.27 L 241.27 205.94 L 242.37 204.85 C 242.61 204.61 244.81 202.58 247.49 202.65 C 248.96 202.69 250.31 203.35 251.38 204.55 C 253.7 207.15 253.02 210.03 252.25 211.32 L 248.49 209.08 C 248.58 208.89 248.8 208.23 248.11 207.46 C 247.73 207.04 247.47 207.03 247.36 207.02 C 247.16 207.02 246.93 207.07 246.7 207.17 L 249.86 213.84 L 244.48 220.68 L 236.04 219.71 Z M 247.09 237.83 C 249.04 235.88 252.21 235.88 254.16 237.83 C 256.12 239.78 256.12 242.95 254.16 244.91 C 252.21 246.86 249.04 246.86 247.09 244.91 C 245.14 242.95 245.14 239.78 247.09 237.83 M 240.83 248 C 238.88 249.96 235.7 249.96 233.75 248 C 231.8 246.05 231.8 242.88 233.75 240.93 C 235.7 238.97 238.88 238.97 240.83 240.93 C 242.78 242.88 242.78 246.05 240.83 248 M 236.85 227.59 C 238.8 225.64 241.98 225.64 243.93 227.59 C 245.88 229.54 245.88 232.71 243.93 234.67 C 241.98 236.62 238.8 236.62 236.85 234.67 C 234.9 232.71 234.9 229.54 236.85 227.59 M 256.55 247.3 C 259.82 244.03 259.82 238.71 256.55 235.44 C 255.25 234.13 253.62 233.38 251.93 233.11 L 258.97 226.06 C 259.97 226.73 260.98 227.46 261.94 228.22 C 262.34 228.54 262.82 228.7 263.3 228.7 C 263.95 228.7 264.58 228.41 265.02 227.87 C 265.77 226.93 265.61 225.55 264.67 224.8 C 260.9 221.8 254.02 217.05 250.26 218.86 C 249.42 219.27 248 220.35 248 223 C 248 224.21 248.98 225.2 250.19 225.2 C 251.4 225.2 252.38 224.21 252.38 223 C 252.38 222.93 252.38 222.86 252.39 222.81 C 252.92 222.83 253.79 223.14 254.83 223.64 L 248.64 229.82 C 248.38 228.13 247.62 226.5 246.32 225.2 C 243.05 221.93 237.73 221.93 234.46 225.2 C 231.3 228.35 231.22 233.4 234.16 236.69 C 233.14 237.1 232.18 237.71 231.36 238.54 C 228.66 241.23 228.23 245.31 229.98 248.49 L 227.34 251.14 L 230.62 254.42 L 233.26 251.78 C 236.45 253.53 240.52 253.09 243.22 250.39 C 244.04 249.57 244.66 248.62 245.07 247.6 C 248.36 250.53 253.4 250.45 256.55 247.3 "/> <path fill="#181310" d="M 169.64 281.08 C 169.2 278.26 169.29 275.62 169.92 273.19 C 170.55 270.76 171.59 268.6 173.02 266.7 C 174.46 264.81 176.25 263.25 178.37 262.04 C 180.5 260.81 182.83 260 185.37 259.6 C 187.39 259.29 189.21 259.2 190.84 259.34 C 192.47 259.48 193.89 259.7 195.11 260.02 C 196.5 260.38 197.73 260.82 198.79 261.34 L 194.77 272.02 C 194.14 271.68 193.45 271.38 192.72 271.09 C 192.08 270.91 191.32 270.75 190.45 270.61 C 189.57 270.48 188.61 270.49 187.55 270.66 C 186.45 270.83 185.48 271.19 184.62 271.72 C 183.77 272.25 183.04 272.91 182.46 273.69 C 181.88 274.47 181.46 275.34 181.21 276.3 C 180.97 277.26 180.93 278.25 181.09 279.28 C 181.25 280.3 181.61 281.23 182.15 282.07 C 182.7 282.91 183.38 283.61 184.2 284.17 C 185 284.73 185.92 285.12 186.93 285.36 C 187.95 285.6 189.02 285.63 190.15 285.45 C 191.28 285.28 192.27 284.98 193.11 284.55 C 193.94 284.13 194.63 283.7 195.18 283.25 C 195.82 282.75 196.37 282.19 196.82 281.58 L 203.93 290.5 C 203.09 291.43 202.07 292.3 200.86 293.11 C 199.8 293.78 198.52 294.45 197 295.12 C 195.47 295.8 193.69 296.3 191.64 296.62 C 188.88 297.05 186.27 297.01 183.8 296.47 C 181.32 295.94 179.11 294.99 177.16 293.64 C 175.21 292.28 173.58 290.54 172.27 288.41 C 170.95 286.28 170.08 283.84 169.64 281.08 "/> <path fill="#181310" d="M 207.08 260.65 L 219.2 260.65 L 219.2 296.42 L 207.08 296.42 Z M 207.08 260.65 "/> <path fill="#181310" d="M 235.72 276.96 L 236.31 276.96 C 237.67 276.96 238.82 276.66 239.77 276.05 C 240.71 275.45 241.19 274.43 241.19 273 C 241.19 271.57 240.71 270.55 239.77 269.94 C 238.82 269.33 237.67 269.03 236.31 269.03 L 235.72 269.03 Z M 224.29 259.37 L 236.63 259.37 C 238.92 259.37 241.04 259.68 242.98 260.29 C 244.93 260.89 246.62 261.79 248.05 262.96 C 249.48 264.14 250.61 265.6 251.41 267.34 C 252.21 269.07 252.61 271.06 252.61 273.32 C 252.61 275.11 252.36 276.62 251.86 277.88 C 251.36 279.13 250.81 280.16 250.2 280.99 C 249.48 281.92 248.68 282.7 247.79 283.35 L 254.49 295.15 L 241.08 295.15 L 235.72 286.08 L 235.72 295.15 L 224.29 295.15 Z M 224.29 259.37 "/> <path fill="#181310" d="M 255.83 278.56 C 255.83 275.7 256.33 273.12 257.34 270.81 C 258.34 268.5 259.7 266.53 261.41 264.88 C 263.13 263.24 265.13 261.98 267.42 261.1 C 269.71 260.23 272.14 259.79 274.71 259.79 C 276.75 259.79 278.57 259.98 280.16 260.38 C 281.75 260.77 283.12 261.22 284.26 261.72 C 285.58 262.29 286.73 262.92 287.69 263.6 L 282.06 273.52 C 281.49 273.09 280.86 272.68 280.18 272.29 C 279.57 272 278.85 271.72 278.01 271.45 C 277.17 271.19 276.21 271.05 275.14 271.05 C 274.04 271.05 273.02 271.25 272.09 271.64 C 271.15 272.04 270.34 272.57 269.64 273.25 C 268.95 273.93 268.4 274.73 268.01 275.64 C 267.61 276.55 267.42 277.52 267.42 278.56 C 267.42 279.6 267.62 280.57 268.04 281.48 C 268.45 282.4 269.01 283.19 269.73 283.87 C 270.44 284.55 271.28 285.09 272.25 285.48 C 273.21 285.88 274.27 286.07 275.41 286.07 C 276.55 286.07 277.57 285.93 278.47 285.64 C 279.36 285.36 280.11 285.04 280.72 284.68 C 281.44 284.28 282.06 283.82 282.6 283.28 L 288.23 293.21 C 287.27 293.99 286.12 294.69 284.8 295.3 C 283.65 295.8 282.28 296.26 280.67 296.69 C 279.06 297.12 277.21 297.34 275.14 297.34 C 272.35 297.34 269.78 296.88 267.42 295.96 C 265.06 295.05 263.02 293.78 261.3 292.13 C 259.59 290.49 258.25 288.51 257.28 286.2 C 256.32 283.9 255.83 281.35 255.83 278.56 "/> <path fill="#181310" d="M 305.02 297.34 C 302.77 297.34 300.73 297.05 298.9 296.48 C 297.08 295.91 295.52 295.05 294.24 293.9 C 292.95 292.76 291.96 291.31 291.26 289.56 C 290.56 287.8 290.21 285.75 290.21 283.39 L 290.21 260.65 L 301.64 260.65 L 301.64 282.91 C 301.64 284.16 301.9 285.11 302.42 285.78 C 302.93 286.44 303.8 286.77 305.02 286.77 C 306.23 286.77 307.1 286.44 307.62 285.78 C 308.14 285.11 308.4 284.16 308.4 282.91 L 308.4 260.65 L 319.88 260.65 L 319.88 283.39 C 319.88 285.75 319.53 287.8 318.83 289.56 C 318.13 291.31 317.13 292.76 315.82 293.9 C 314.52 295.05 312.96 295.91 311.13 296.48 C 309.31 297.05 307.27 297.34 305.02 297.34 "/> <path fill="#181310" d="M 323.46 282.95 C 324.14 283.43 324.87 283.86 325.65 284.25 C 326.28 284.63 327.01 285.01 327.85 285.38 C 328.69 285.75 329.55 286.07 330.44 286.35 C 332.01 286.84 332.98 286.5 333.34 285.34 C 333.48 284.89 333.38 284.37 333.04 283.76 C 332.71 283.15 332.26 282.45 331.7 281.66 C 331.14 280.87 330.55 280 329.92 279.06 C 329.3 278.11 328.75 277.09 328.3 275.97 C 327.84 274.86 327.54 273.67 327.41 272.41 C 327.27 271.15 327.43 269.8 327.87 268.37 C 328.37 266.77 329.1 265.44 330.06 264.39 C 331.02 263.34 332.14 262.56 333.42 262.06 C 334.7 261.56 336.09 261.3 337.61 261.31 C 339.12 261.31 340.67 261.55 342.24 262.04 C 343.06 262.29 343.87 262.59 344.66 262.93 C 345.45 263.27 346.16 263.57 346.79 263.84 C 347.51 264.18 348.21 264.51 348.9 264.83 L 345.93 274.41 C 345.67 274.29 345.37 274.16 345.04 274.02 C 344.78 273.91 344.48 273.78 344.15 273.64 C 343.82 273.5 343.46 273.37 343.09 273.25 C 342.89 273.19 342.62 273.12 342.31 273.04 C 342 272.96 341.7 272.91 341.4 272.9 C 341.11 272.88 340.83 272.93 340.57 273.04 C 340.32 273.14 340.14 273.35 340.04 273.66 C 339.96 273.93 340.09 274.34 340.42 274.89 C 340.75 275.45 341.17 276.1 341.66 276.86 C 342.16 277.61 342.7 278.46 343.28 279.43 C 343.86 280.4 344.34 281.45 344.72 282.57 C 345.11 283.7 345.34 284.92 345.45 286.22 C 345.55 287.53 345.38 288.9 344.93 290.33 C 344.46 291.84 343.79 293.17 342.91 294.34 C 342.02 295.5 340.92 296.42 339.61 297.08 C 338.3 297.74 336.78 298.11 335.03 298.19 C 333.29 298.26 331.34 297.97 329.18 297.3 C 327.89 296.9 326.7 296.46 325.63 296 C 324.55 295.54 323.62 295.09 322.82 294.66 C 321.88 294.18 321.04 293.7 320.29 293.2 Z M 323.46 282.95 "/> <path fill="#181310" d="M 178.03 326.07 C 177.07 323.38 176.68 320.77 176.86 318.26 C 177.03 315.75 177.65 313.44 178.72 311.32 C 179.79 309.2 181.26 307.34 183.12 305.75 C 184.99 304.16 187.13 302.93 189.56 302.07 C 191.48 301.39 193.26 300.97 194.89 300.81 C 196.52 300.65 197.96 300.62 199.21 300.71 C 200.64 300.8 201.93 301.01 203.07 301.33 L 201.07 312.56 C 200.39 312.35 199.66 312.17 198.89 312.03 C 198.22 311.96 197.45 311.94 196.57 311.97 C 195.68 312 194.74 312.19 193.73 312.55 C 192.68 312.92 191.79 313.45 191.04 314.12 C 190.3 314.8 189.71 315.58 189.28 316.45 C 188.85 317.33 188.6 318.26 188.53 319.25 C 188.46 320.24 188.61 321.23 188.95 322.2 C 189.3 323.18 189.82 324.03 190.51 324.75 C 191.2 325.48 192 326.04 192.9 326.44 C 193.8 326.84 194.77 327.07 195.81 327.11 C 196.85 327.16 197.91 327 198.99 326.61 C 200.07 326.23 200.98 325.76 201.73 325.19 C 202.48 324.62 203.08 324.07 203.53 323.53 C 204.07 322.92 204.51 322.27 204.84 321.59 L 213.46 329.06 C 212.81 330.12 211.96 331.16 210.92 332.18 C 210.01 333.03 208.86 333.93 207.49 334.87 C 206.12 335.81 204.45 336.63 202.5 337.32 C 199.87 338.25 197.29 338.68 194.76 338.61 C 192.23 338.54 189.88 338.02 187.72 337.04 C 185.55 336.06 183.62 334.64 181.95 332.79 C 180.27 330.94 178.96 328.7 178.03 326.07 "/> <path fill="#181310" d="M 222.19 313.85 L 224.61 320.13 L 227.02 313.85 Z M 228.89 338.52 L 220.31 338.52 L 206.74 302.75 L 218.01 302.75 L 219.19 305.97 L 230.02 305.97 L 231.2 302.75 L 242.46 302.75 Z M 228.89 338.52 "/> <path fill="#181310" d="M 241.9 331.25 C 242.68 331.5 243.51 331.7 244.37 331.84 C 245.08 332.02 245.89 332.16 246.8 332.27 C 247.72 332.38 248.64 332.43 249.57 332.43 C 251.21 332.43 252.04 331.82 252.04 330.61 C 252.04 330.14 251.79 329.67 251.29 329.18 C 250.79 328.7 250.15 328.17 249.38 327.57 C 248.61 326.98 247.79 326.33 246.91 325.62 C 246.04 324.9 245.21 324.08 244.45 323.15 C 243.68 322.22 243.04 321.18 242.54 320.01 C 242.04 318.85 241.79 317.52 241.79 316.02 C 241.79 314.34 242.09 312.85 242.7 311.57 C 243.31 310.28 244.15 309.2 245.22 308.35 C 246.3 307.49 247.55 306.84 249 306.39 C 250.45 305.94 252 305.72 253.64 305.72 C 254.5 305.72 255.36 305.76 256.22 305.85 C 257.08 305.94 257.85 306.02 258.53 306.09 C 259.31 306.2 260.08 306.31 260.83 306.41 L 260.83 316.45 C 260.55 316.41 260.22 316.38 259.87 316.34 C 259.58 316.3 259.26 316.27 258.9 316.23 C 258.54 316.2 258.17 316.18 257.77 316.18 C 257.56 316.18 257.29 316.19 256.97 316.2 C 256.65 316.22 256.34 316.27 256.06 316.34 C 255.77 316.41 255.52 316.54 255.31 316.71 C 255.09 316.89 254.98 317.14 254.98 317.46 C 254.98 317.75 255.23 318.11 255.71 318.54 C 256.19 318.96 256.78 319.47 257.48 320.04 C 258.18 320.61 258.95 321.27 259.79 322.02 C 260.62 322.77 261.39 323.63 262.09 324.6 C 262.79 325.56 263.38 326.66 263.86 327.87 C 264.34 329.09 264.59 330.45 264.59 331.95 C 264.59 333.52 264.34 335 263.84 336.37 C 263.34 337.75 262.56 338.95 261.5 339.96 C 260.45 340.98 259.1 341.79 257.45 342.38 C 255.81 342.97 253.86 343.27 251.61 343.27 C 250.25 343.27 248.99 343.2 247.82 343.07 C 246.66 342.95 245.63 342.8 244.74 342.62 C 243.7 342.44 242.76 342.23 241.9 341.98 Z M 241.9 331.25 "/> <path fill="#181310" d="M 271.92 312.14 L 265.33 312.14 L 265.33 302.75 L 290.32 302.75 L 290.32 312.14 L 283.72 312.14 L 283.72 338.52 L 271.92 338.52 Z M 271.92 312.14 "/> <path fill="#181310" d="M 293.54 302.75 L 305.45 302.75 L 305.45 329.14 L 315.32 329.14 L 315.32 338.53 L 293.54 338.53 Z M 293.54 302.75 "/> <path fill="#181310" d="M 318.54 302.75 L 339.61 302.75 L 339.61 312.14 L 329.96 312.14 L 329.96 316.11 L 339.45 316.11 L 339.45 325.01 L 329.96 325.01 L 329.96 329.14 L 339.99 329.14 L 339.99 338.53 L 318.54 338.53 Z M 318.54 302.75 "/> </symbol><symbol id="logoMini" viewBox="115.3 137.1 293.3 293.3"><path fill="#f44aad" d="M 261.89 430.41 L 115.26 283.77 L 261.89 137.14 L 408.52 283.77 Z M 261.89 430.41 "/> <path fill="#181310" d="M 295.67 245.2 C 294.36 245.53 293.1 245.68 291.91 245.68 C 283.85 245.68 278.51 238.84 276.54 234.51 C 275.93 233.71 274.19 231.82 272.63 231.7 C 272.24 231.68 271.64 231.73 270.86 232.53 C 269.85 233.56 269.47 235.15 269.8 237 C 270.46 240.74 274.23 246.19 282.8 250.26 C 283.78 250.73 284.27 251.84 283.95 252.88 C 283.64 253.91 282.62 254.56 281.54 254.41 C 274.85 253.41 264.21 251.94 262.34 251.94 C 261.26 251.94 259.65 253.41 258.91 254.4 L 257.59 256.14 L 254.09 253.54 L 255.39 251.78 C 255.71 251.35 258.63 247.56 262.34 247.56 C 263.71 247.56 268.05 248.1 272.35 248.68 C 268.6 245.38 266.17 241.59 265.49 237.77 C 264.91 234.48 265.7 231.53 267.73 229.46 C 269.64 227.51 271.63 227.23 272.98 227.34 C 273.74 227.39 274.47 227.59 275.14 227.88 C 273.42 224.24 269.93 221.09 266.41 218.62 L 264.43 220.61 C 263.3 219.79 261.92 218.87 260.45 218.03 L 279.72 198.75 L 283 202.04 L 278.98 206.05 L 281.06 208.12 L 285.2 203.99 L 287.63 206.43 L 289.81 208.6 L 287.16 211.25 L 284.98 209.08 L 283.5 210.56 L 285.67 212.74 L 283.02 215.39 L 280.85 213.21 L 279.36 214.7 L 281.54 216.87 L 278.89 219.52 L 276.71 217.35 L 276.23 216.87 L 274.27 214.91 L 278.41 210.78 L 276.34 208.7 L 269.55 215.49 C 275.22 219.64 280.8 225.6 280.61 232.89 C 281.57 234.82 286.18 243.08 294.6 240.95 C 299.41 239.73 299.94 236.32 299.83 234.39 C 299.62 230.89 297.22 227.64 294.57 227.3 C 292.06 226.96 290.89 228.13 290.63 229.34 C 290.42 230.31 290.79 231.63 292.5 232.14 C 293.66 232.48 294.32 233.7 293.98 234.86 C 293.63 236.02 292.41 236.68 291.25 236.34 C 287.18 235.13 285.7 231.45 286.35 228.42 C 287.01 225.32 290.04 222.28 295.15 222.96 C 299.89 223.58 303.87 228.49 304.2 234.13 C 304.52 239.55 301.25 243.79 295.67 245.2 M 235.47 218.86 C 231.78 213.29 231.89 212.95 232.25 211.93 L 232.6 210.91 L 233.64 210.55 C 235.4 210.02 236.04 209.35 236.08 209.18 C 236.1 209.06 235.88 208.38 234.53 207.24 L 233 205.95 L 234.15 204.31 C 234.4 203.96 240.31 195.65 248.22 196.75 C 255.14 197.7 259.02 202.22 259.31 209.52 C 260.12 209.89 261.23 210.43 262.53 211.12 L 259.28 214.37 C 257.54 213.49 256.37 213 256.32 212.98 L 254.29 212.15 L 254.95 210.55 C 255 203.02 250.83 201.53 247.62 201.09 C 243.95 200.59 240.6 203.56 238.89 205.43 C 240.2 206.97 240.69 208.53 240.37 210.07 C 240.07 211.54 239.03 212.79 237.38 213.72 C 237.73 214.3 238.15 214.95 238.56 215.59 L 242.55 216.05 L 244.74 213.27 L 241.27 205.94 L 242.37 204.85 C 242.61 204.61 244.81 202.58 247.49 202.65 C 248.96 202.69 250.31 203.35 251.38 204.55 C 253.7 207.15 253.02 210.03 252.25 211.32 L 248.49 209.08 C 248.58 208.89 248.8 208.23 248.11 207.46 C 247.73 207.04 247.47 207.03 247.36 207.02 C 247.16 207.02 246.93 207.07 246.7 207.17 L 249.86 213.84 L 244.48 220.68 L 236.04 219.71 Z M 247.09 237.83 C 249.04 235.88 252.21 235.88 254.16 237.83 C 256.12 239.78 256.12 242.95 254.16 244.91 C 252.21 246.86 249.04 246.86 247.09 244.91 C 245.14 242.95 245.14 239.78 247.09 237.83 M 240.83 248 C 238.88 249.96 235.7 249.96 233.75 248 C 231.8 246.05 231.8 242.88 233.75 240.93 C 235.7 238.97 238.88 238.97 240.83 240.93 C 242.78 242.88 242.78 246.05 240.83 248 M 236.85 227.59 C 238.8 225.64 241.98 225.64 243.93 227.59 C 245.88 229.54 245.88 232.71 243.93 234.67 C 241.98 236.62 238.8 236.62 236.85 234.67 C 234.9 232.71 234.9 229.54 236.85 227.59 M 256.55 247.3 C 259.82 244.03 259.82 238.71 256.55 235.44 C 255.25 234.13 253.62 233.38 251.93 233.11 L 258.97 226.06 C 259.97 226.73 260.98 227.46 261.94 228.22 C 262.34 228.54 262.82 228.7 263.3 228.7 C 263.95 228.7 264.58 228.41 265.02 227.87 C 265.77 226.93 265.61 225.55 264.67 224.8 C 260.9 221.8 254.02 217.05 250.26 218.86 C 249.42 219.27 248 220.35 248 223 C 248 224.21 248.98 225.2 250.19 225.2 C 251.4 225.2 252.38 224.21 252.38 223 C 252.38 222.93 252.38 222.86 252.39 222.81 C 252.92 222.83 253.79 223.14 254.83 223.64 L 248.64 229.82 C 248.38 228.13 247.62 226.5 246.32 225.2 C 243.05 221.93 237.73 221.93 234.46 225.2 C 231.3 228.35 231.22 233.4 234.16 236.69 C 233.14 237.1 232.18 237.71 231.36 238.54 C 228.66 241.23 228.23 245.31 229.98 248.49 L 227.34 251.14 L 230.62 254.42 L 233.26 251.78 C 236.45 253.53 240.52 253.09 243.22 250.39 C 244.04 249.57 244.66 248.62 245.07 247.6 C 248.36 250.53 253.4 250.45 256.55 247.3 "/></symbol></svg>
+
+
+<!-- ══ header ══ -->
+<header>
+  <div class="bar">
+    <a class="brand" href="#home" aria-label="Circus Castle Bali, home">
+      <svg class="logo-mini" viewBox="115.3 137.1 293.3 293.3" aria-hidden="true"><use href="#logoMini"/></svg>
+      <span><b>Circus Castle</b><span>Feel it in the air</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#castle">The castle</a>
+      <a href="#grounds">The grounds</a>
+      <a href="#paths">Ways in</a>
+      <a href="#pattern">Pattern</a>
+      <a href="#prices">Prices</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#camp">Live-in camp</a>
+      <a href="#season">Season</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn--brass" href="#book">Book a trial</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><i></i></button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer">
+  <button class="close" id="close" aria-label="Close menu">✕</button>
+  <a href="#castle">The castle</a>
+  <a href="#paths">Ways in</a>
+  <a href="#prices">Prices</a>
+  <a href="#schedule">Schedule</a>
+  <a href="#camp">Live-in camp</a>
+  <a href="#season">Season</a>
+  <a href="#book">Book</a>
+</div>
+
+<!-- ══ the silk: scroll rail + section nav ══ -->
+<nav class="silkrail" aria-label="Sections">
+  <div class="track"><span class="fill" id="fill"></span></div>
+  <ol id="knots">
+    <li><button data-go="home"><span class="knot"></span>Top</button></li>
+    <li><button data-go="castle"><span class="knot"></span>Castle</button></li>
+    <li><button data-go="grounds"><span class="knot"></span>Grounds</button></li>
+    <li><button data-go="paths"><span class="knot"></span>Ways in</button></li>
+    <li><button data-go="pattern"><span class="knot"></span>Pattern</button></li>
+    <li><button data-go="prices"><span class="knot"></span>Prices</button></li>
+    <li><button data-go="schedule"><span class="knot"></span>Schedule</button></li>
+    <li><button data-go="camp"><span class="knot"></span>Camp</button></li>
+    <li><button data-go="season"><span class="knot"></span>Season</button></li>
+    <li><button data-go="coaches"><span class="knot"></span>Coaches</button></li>
+    <li><button data-go="book"><span class="knot"></span>Book</button></li>
+  </ol>
+</nav>
+
+<!-- ══ hero ══ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-photo"></div>
+  <canvas class="mosaic live" id="heroMosaic" aria-hidden="true"></canvas>
+  <div class="badge-wrap hero-badge"><svg class="logo-full" viewBox="115.3 137.1 293.3 293.3" role="img" aria-label="Circus Castle Bali"><use href="#logoFull"/></svg></div>
+  <div class="wrap">
+    <div class="mobile-logo"><svg class="logo-full" viewBox="115.3 137.1 293.3 293.3" role="img" aria-label="Circus Castle Bali"><use href="#logoFull"/></svg></div>
+    <p class="eyebrow">Feel it in the air · Ubud, Bali · open 365 days</p>
+    <h1>
+      <span class="ln"><span>Eight metres</span></span>
+      <span class="ln"><span>of air in the</span></span>
+      <span class="ln"><span>middle of <em>Ubud</em></span></span>
+    </h1>
+    <p class="lead hero-sub">An aerial school, a professional rig and a castle you can move into. Sleep upstairs, train downstairs, walk to everything else.</p>
+    <div class="hero-cta">
+      <a class="btn btn--brass" href="#book">Book a free trial</a>
+      <a class="btn btn--ghost" href="#camp">See the live-in camp</a>
+    </div>
+    <div class="specs">
+      <div><b>8 m</b><span>ceiling height</span></div>
+      <div><b>Rig + winch</b><span>silks · hoop · straps · net</span></div>
+      <div><b>10</b><span>camp sessions a week</span></div>
+      <div><b>0 km</b><span>you can walk to town</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="mband"><canvas id="band1" aria-hidden="true"></canvas></div>
+
+<!-- ══ marquee ══ -->
+<div class="marquee" aria-hidden="true">
+  <ul id="mq">
+    <li>Silks</li><li>Hoop</li><li>Straps</li><li>Hammock</li><li>Rope</li><li>Net</li><li>Trampoline</li><li>Ballet for aerialists</li><li>Conditioning</li><li>Winch work</li>
+  </ul>
+</div>
+
+<!-- ══ the castle ══ -->
+<section id="castle">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="eyebrow">The place</p>
+        <h2>A rig inside<br>a castle, inside<br>a garden</h2>
+      </div>
+      <div>
+        <p class="lead">The hall was built around the height: 8 metres of clear air, a proper rig, crash mats and a winch. Everything else — the pond, the tea house, the lamps, the rooms — is what makes people stay for months instead of a week.</p>
+        <p class="mono dim" style="font-size:12px;letter-spacing:.12em">Ubud centre · cafés, spa and market on foot · no scooter needed</p>
+      </div>
+    </div>
+
+    <div class="rail-scroll rv" id="shots">
+      <figure class="shot p1" style="margin:0"><figcaption class="tag">01 — Castle facade at dusk</figcaption></figure>
+      <figure class="shot wide p2" style="margin:0"><figcaption class="tag">02 — The 8 m hall, rig and mats</figcaption></figure>
+      <figure class="shot p3" style="margin:0"><figcaption class="tag">03 — Silks under the lamp photo zone</figcaption></figure>
+      <figure class="shot p4" style="margin:0"><figcaption class="tag">04 — Garden, pond, tea house</figcaption></figure>
+      <figure class="shot wide p5" style="margin:0"><figcaption class="tag">05 — Rooms in the castle</figcaption></figure>
+      <figure class="shot p6" style="margin:0"><figcaption class="tag">06 — Photo spot facing the castle</figcaption></figure>
+      <figure class="shot p7" style="margin:0"><figcaption class="tag">07 — Kids group, evening class</figcaption></figure>
+    </div>
+    <p class="note">Placeholders. Drop your Drive photos in and the whole page changes character — this rail is built for tall vertical shots.</p>
+  </div>
+</section>
+
+
+<!-- ══ grounds map ══ -->
+<section id="grounds">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="eyebrow">The grounds</p>
+        <h2>Walk the<br>place first</h2>
+      </div>
+      <div><p class="lead">Everything sits inside one walled garden: the hall, the rooms you sleep in, the pond, the tea house and the spot people shoot from. Tap a marker to look inside.</p></div>
+    </div>
+
+    <div class="gmap rv" id="gmap">
+      <div class="photo-layer" id="photoLayer"></div>
+      <svg class="plan" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="1600" height="1000" fill="#14120f"/>
+        <path d="M0 0h1600v1000H0z" fill="url(#garden)"/>
+        <defs>
+          <linearGradient id="garden" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#12301f" stop-opacity=".9"/>
+            <stop offset="1" stop-color="#14120f" stop-opacity=".95"/>
+          </linearGradient>
+        </defs>
+        <!-- paths -->
+        <path d="M120 880 C 420 840 520 690 700 640 S 1080 560 1280 300" stroke="rgba(255,255,255,.16)" stroke-width="16" fill="none" stroke-linecap="round" stroke-dasharray="2 30"/>
+        <path d="M700 640 C 780 760 980 800 1300 780" stroke="rgba(255,255,255,.12)" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="2 26"/>
+        <!-- pond -->
+        <ellipse cx="1180" cy="775" rx="150" ry="88" fill="#0b3d52" opacity=".85"/>
+        <ellipse cx="1180" cy="775" rx="150" ry="88" fill="none" stroke="#00adef" stroke-opacity=".45" stroke-width="3"/>
+        <!-- castle footprint -->
+        <g opacity=".95">
+          <rect x="560" y="230" width="330" height="300" fill="#221b16" stroke="#f44aad" stroke-width="4"/>
+          <rect x="600" y="180" width="60" height="60" fill="#221b16" stroke="#f44aad" stroke-width="4"/>
+          <rect x="790" y="180" width="60" height="60" fill="#221b16" stroke="#f44aad" stroke-width="4"/>
+        </g>
+        <!-- training hall -->
+        <rect x="920" y="300" width="300" height="230" fill="#1b2620" stroke="#00a650" stroke-width="4"/>
+        <!-- rooms wing -->
+        <rect x="300" y="330" width="210" height="260" fill="#241a1a" stroke="#f0471e" stroke-width="4"/>
+        <!-- tea house -->
+        <path d="M1330 640 l70 -70 70 70 -22 0 0 90 -96 0 0 -90z" fill="#1d2422" stroke="#00adef" stroke-width="4"/>
+        <!-- trees -->
+        <g fill="#1c4a2e" opacity=".8">
+          <circle cx="210" cy="200" r="52"/><circle cx="330" cy="150" r="38"/><circle cx="1450" cy="230" r="46"/>
+          <circle cx="1380" cy="330" r="34"/><circle cx="180" cy="700" r="44"/><circle cx="420" cy="810" r="38"/>
+          <circle cx="880" cy="880" r="50"/><circle cx="1520" cy="880" r="42"/><circle cx="1000" cy="120" r="40"/>
+        </g>
+      </svg>
+
+      <button class="hot" style="left:45%;top:36%;--hc:var(--magenta)" data-spot="castle" aria-expanded="false" aria-controls="gpanel"><i></i><b>1</b><span>The castle</span></button>
+      <button class="hot" style="left:67%;top:41%;--hc:var(--green)" data-spot="hall" aria-expanded="false" aria-controls="gpanel"><i></i><b>2</b><span>8 m hall</span></button>
+      <button class="hot" style="left:25%;top:46%;--hc:var(--orange)" data-spot="rooms" aria-expanded="false" aria-controls="gpanel"><i></i><b>3</b><span>Rooms</span></button>
+      <button class="hot" style="left:88%;top:68%;--hc:var(--cyan)" data-spot="tea" aria-expanded="false" aria-controls="gpanel"><i></i><b>4</b><span>Tea house</span></button>
+      <button class="hot" style="left:74%;top:78%;--hc:var(--cyan)" data-spot="pond" aria-expanded="false" aria-controls="gpanel"><i></i><b>5</b><span>Pond</span></button>
+      <button class="hot" style="left:33%;top:72%;--hc:var(--magenta)" data-spot="photo" aria-expanded="false" aria-controls="gpanel"><i></i><b>6</b><span>Photo spot</span></button>
+      <button class="hot" style="left:12%;top:88%;--hc:var(--green)" data-spot="gate" aria-expanded="false" aria-controls="gpanel"><i></i><b>7</b><span>To Ubud centre</span></button>
+
+      <aside class="gpanel" id="gpanel" aria-live="polite">
+        <button class="close" id="gclose" aria-label="Close">✕</button>
+        <div id="gbody"></div>
+      </aside>
+    </div>
+
+    <div class="gkey" id="gkey"></div>
+    <p class="note">Plan drawn to scale-ish for layout. Drop in the drone shot and the markers stay where they are — they sit on percentages, not on the image.</p>
+  </div>
+</section>
+
+<!-- ══ ways in ══ -->
+<section id="paths">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="eyebrow">Three ways in</p>
+        <h2>Drop in.<br>Grow up.<br>Move in.</h2>
+      </div>
+      <div><p class="lead">Most people arrive through one of three doors. Pick yours and the prices below jump to the right list.</p></div>
+    </div>
+
+    <div class="doors rv">
+      <article class="door">
+        <p class="num">Door 01 — Adults</p>
+        <h3>Drop in</h3>
+        <p>Classes for adults on any apparatus, from complete beginner to pro. Choose silks, hoop, straps or hammock — the coach builds the session around you.</p>
+        <ul>
+          <li><span>Free trial</span><span class="mono">residents · 1 in 7 days</span></li>
+          <li><span>Single class</span><span class="mono">1.5 h</span></li>
+          <li><span>Private &amp; small group</span><span class="mono">1–12 people</span></li>
+        </ul>
+        <div class="foot"><span class="price">from 600 000 IDR</span><button class="btn btn--ghost btn--sm" data-jump="adults">Prices</button></div>
+      </article>
+
+      <article class="door">
+        <p class="num">Door 02 — Kids 5–16</p>
+        <h3>Grow up</h3>
+        <p>An academic year, not a drop-in club: aerial, trampoline and ballet, open lessons for parents, a photo session every three months and a stage to finish on.</p>
+        <ul>
+          <li><span>Free trials</span><span class="mono">residents · 2 in 7 days</span></li>
+          <li><span>Groups</span><span class="mono">3–5 × week</span></li>
+          <li><span>Pro track</span><span class="mono">winch · solo acts</span></li>
+        </ul>
+        <div class="foot"><span class="price">from 4 900 000 IDR / month</span><button class="btn btn--ghost btn--sm" data-jump="kids">Prices</button></div>
+      </article>
+
+      <article class="door">
+        <p class="num">Door 03 — Residents</p>
+        <h3>Move in</h3>
+        <p>The live-in camp: a room in the castle, ten sessions a week, a photoshoot inside the walls and a coach who writes you a growth roadmap. Check in any day.</p>
+        <ul>
+          <li><span>Shared / twin / private</span><span class="mono">room types</span></li>
+          <li><span>Sessions</span><span class="mono">10 / week</span></li>
+          <li><span>Stay</span><span class="mono">1 week → months</span></li>
+        </ul>
+        <div class="foot"><span class="price">from 7 500 000 IDR / week</span><button class="btn btn--ghost btn--sm" data-jump="camp-anchor">See camp</button></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ the pattern ══ -->
+<section id="pattern">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="eyebrow">The pattern</p>
+        <h2>Four colours,<br>one grid</h2>
+      </div>
+      <div>
+        <p class="lead">The mosaic on our posters is built from a single rotated square in four colours. It runs through the whole site — as a header, as a divider, as the thing your cursor pushes around. Drag across it.</p>
+        <div class="swatches">
+          <span class="sw"><i style="background:var(--magenta)"></i>#F44AAD</span>
+          <span class="sw"><i style="background:var(--cyan)"></i>#00ADEF</span>
+          <span class="sw"><i style="background:var(--green)"></i>#00A650</span>
+          <span class="sw"><i style="background:var(--orange)"></i>#F0471E</span>
+          <span class="sw"><i style="background:var(--ink);box-shadow:inset 0 0 0 1px var(--hair)"></i>#181310</span>
+        </div>
+      </div>
+    </div>
+    <div class="playfield rv" id="play">
+      <canvas class="mosaic live" id="playMosaic"></canvas>
+      <span class="hint">Move your cursor — tap and drag on a phone</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ prices ══ -->
+<section id="prices">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="eyebrow">Prices · IDR</p>
+        <h2>What it costs</h2>
+      </div>
+      <div><p class="lead">Everything published, nothing negotiated at the door. Monthly programmes are billed per month; passes and privates are paid per use.</p></div>
+    </div>
+
+    <div class="tabs rv" role="tablist" aria-label="Price lists">
+      <button class="tab" role="tab" id="tab-kids" aria-controls="pan-kids" aria-selected="true">Kids programmes</button>
+      <button class="tab" role="tab" id="tab-adults" aria-controls="pan-adults" aria-selected="false">Adults &amp; pros</button>
+      <button class="tab" role="tab" id="tab-camp" aria-controls="pan-camp" aria-selected="false">Live-in camp</button>
+    </div>
+
+    <div class="panel rv" id="pan-kids" role="tabpanel" aria-labelledby="tab-kids">
+      <div class="cards">
+        <article class="card">
+          <p class="kicker">Foundation</p>
+          <h3>Core</h3>
+          <p class="freq">3 × week · 1.5 h</p>
+          <ul>
+            <li>Aerial, trampoline or ballet — one track or a mix</li>
+            <li>Open lessons with parents</li>
+            <li>Photo session every 3 months</li>
+          </ul>
+          <div class="amt"><b>4 900 000</b><span>/ month</span><s>6 000 000</s></div>
+        </article>
+
+        <article class="card feature">
+          <p class="kicker">Most chosen</p>
+          <h3>Star</h3>
+          <p class="freq">4 × week · 1.5 h</p>
+          <ul>
+            <li>Everything in Core</li>
+            <li>Places in the ensemble at the term concert</li>
+            <li>Winch work once a week after 3–6 months</li>
+          </ul>
+          <div class="amt"><b>5 900 000</b><span>/ month</span><s>7 800 000</s></div>
+        </article>
+
+        <article class="card">
+          <p class="kicker">Competitive</p>
+          <h3>SuperStar</h3>
+          <p class="freq">5 × week · 1.5 h</p>
+          <ul>
+            <li>Quartet and quintet numbers on stage</li>
+            <li>Annual competition with a jury</li>
+            <li>Photo session every 3 months</li>
+          </ul>
+          <div class="amt"><b>6 900 000</b><span>/ month</span><s>9 000 000</s></div>
+        </article>
+
+        <article class="card">
+          <p class="kicker">Full load</p>
+          <h3>SuperStar Plus</h3>
+          <p class="freq">5 days · 3 h a day</p>
+          <ul>
+            <li>Duet and trio numbers</li>
+            <li>Competitions and showcases</li>
+            <li>Photo session every 3 months</li>
+          </ul>
+          <div class="amt"><b>9 900 000</b><span>/ month</span><s>18 000 000</s></div>
+        </article>
+
+        <article class="card">
+          <p class="kicker">Pro track · by audition</p>
+          <h3>Full Power Production</h3>
+          <p class="freq">5 days · 3 h a day</p>
+          <ul>
+            <li>Physical load plus creative rehearsals</li>
+            <li>Private winch session once a week</li>
+            <li>Solo and small-group performances</li>
+            <li>A coach and director assigned to the child</li>
+          </ul>
+          <div class="amt"><b>from 15 900 000</b><span>/ month</span></div>
+        </article>
+
+        <article class="card">
+          <p class="kicker">Before you commit</p>
+          <h3>Two free trials</h3>
+          <p class="freq">Residents · within 7 days</p>
+          <ul>
+            <li>Two classes, no card, no deposit</li>
+            <li>Parents watch the whole session</li>
+            <li>The coach tells you which group fits</li>
+          </ul>
+          <div class="amt"><b>0</b><span>then decide</span></div>
+        </article>
+      </div>
+      <p class="note">Missed a class? One make-up a month with 24 hours' notice. Illness is covered separately — nothing is lost.</p>
+    </div>
+
+    <div class="panel rv" id="pan-adults" role="tabpanel" aria-labelledby="tab-adults" hidden>
+      <div class="list-price">
+        <div><b>Free trial</b><em>Residents, one class within 7 days</em><span class="v">0</span></div>
+        <div><b>Group class, drop-in</b><em>1.5 h, mixed apparatus, all levels</em><span class="v">600 000</span></div>
+        <div><b>4-class pack</b><em>Walk-in bundle</em><span class="v">2 000 000</span></div>
+        <div><b>Private training</b><em>1 : 1, 1.5 h</em><span class="v">1 500 000</span></div>
+        <div><b>Semi-private</b><em>2 people, per person</em><span class="v">1 000 000</span></div>
+        <div><b>Mini group</b><em>3–6 people, one coach, per group</em><span class="v">2 500 000</span></div>
+        <div><b>Max group</b><em>6–12 people, two coaches, per group</em><span class="v">5 000 000</span></div>
+        <div><b>Mini group training</b><em>4 people, 3 × week, 1.5 h — per person, per month</em><span class="v">6 900 000</span></div>
+        <div><b>Self-practice</b><em>Open training, 2 h, 12:30–15:30 — pros or with coach approval</em><span class="v">200 000</span></div>
+      </div>
+      <p class="note">Buy ten self-practice sessions and take 10% off. Self-practice is unlocked by the coach, not by the calendar.</p>
+    </div>
+
+    <div class="panel rv" id="pan-camp" role="tabpanel" aria-labelledby="tab-camp" hidden>
+      <div class="cards">
+        <article class="card">
+          <p class="kicker">Shared · female only</p>
+          <h3>Four beds</h3>
+          <p class="freq">per person · per week</p>
+          <ul><li>Bed in a 4-person room</li><li>10 sessions a week</li><li>Photoshoot inside the castle</li></ul>
+          <div class="amt"><b>7 500 000</b><span>/ week</span></div>
+        </article>
+        <article class="card feature">
+          <p class="kicker">Twin</p>
+          <h3>Two beds</h3>
+          <p class="freq">per person · per week</p>
+          <ul><li>Share with a training partner</li><li>10 sessions a week</li><li>Photoshoot inside the castle</li></ul>
+          <div class="amt"><b>10 000 000</b><span>/ week</span></div>
+        </article>
+        <article class="card">
+          <p class="kicker">Private</p>
+          <h3>Your own room</h3>
+          <p class="freq">one person or a couple</p>
+          <ul><li>Private room in the castle</li><li>10 sessions a week</li><li>Photoshoot inside the castle</li></ul>
+          <div class="amt"><b>15 000 000</b><span>/ week</span></div>
+        </article>
+      </div>
+      <p class="note">Outdoor shoots in the rice fields, at waterfalls or by the ocean are a separate package — ask when you book.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ schedule ══ -->
+<section id="schedule">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="eyebrow">A week here</p>
+        <h2>Schedule</h2>
+      </div>
+      <div><p class="lead">Mornings belong to adults, afternoons to open training, evenings to the kids' groups. Fridays end with a shoot in the garden.</p></div>
+    </div>
+
+    <div class="sched rv">
+      <div class="days" role="tablist" aria-label="Days of the week" id="days"></div>
+      <div id="slots"></div>
+    </div>
+    <p class="note">Sample week for layout. Send me the real grid and the times, apparatus and coach names swap in — including seasonal changes.</p>
+  </div>
+</section>
+
+<!-- ══ camp ══ -->
+<section id="camp">
+  <div class="wrap">
+    <div class="sec-head rv" id="camp-anchor">
+      <div>
+        <p class="eyebrow">Aerial co-living camp · check in any day</p>
+        <h2>Live in the castle</h2>
+      </div>
+      <div><p class="lead">Ten sessions a week — stretch, conditioning, aerials, creative combos — a weekly review with your coach, and a room upstairs. Pick a room and a length to see the total.</p></div>
+    </div>
+
+    <div class="camp rv">
+      <div class="rooms">
+        <label class="room">
+          <input type="radio" name="room" value="7500000" data-name="Shared room, 4 beds" checked>
+          <span class="rn"><span class="dot"></span>Shared room · 4 beds</span>
+          <span class="rp">7 500 000 / week</span>
+          <small>Female only. The cheapest way to spend a long season here.</small>
+        </label>
+        <label class="room">
+          <input type="radio" name="room" value="10000000" data-name="Twin room, 2 beds">
+          <span class="rn"><span class="dot"></span>Twin room · 2 beds</span>
+          <span class="rp">10 000 000 / week</span>
+          <small>Per person. Come with a training partner or get matched with one.</small>
+        </label>
+        <label class="room">
+          <input type="radio" name="room" value="15000000" data-name="Private room">
+          <span class="rn"><span class="dot"></span>Private room</span>
+          <span class="rp">15 000 000 / week</span>
+          <small>One person or a couple. Quiet, with the garden outside the window.</small>
+        </label>
+
+        <div class="panel-box" style="margin-top:14px">
+          <p class="eyebrow" style="margin-bottom:14px">House rules</p>
+          <p class="dim" style="font-size:14.5px;margin:0">Smoke-free and alcohol-free. The shared kitchen is vegetarian. No outside guests in the living quarters. Respect is not optional — harassment or discrimination ends the stay without a refund.</p>
+        </div>
+      </div>
+
+      <aside class="calc">
+        <p class="cap mono" style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dust)">How long are you staying?</p>
+        <div class="stepper">
+          <button type="button" id="minus" aria-label="One week less">−</button>
+          <output id="weeks" aria-live="polite">2</output>
+          <span class="unit" id="wlabel">weeks</span>
+          <button type="button" id="plus" aria-label="One week more">+</button>
+        </div>
+        <div class="total">
+          <p class="cap">Total</p>
+          <p class="big" id="total">15 000 000 IDR</p>
+          <p class="mono dim" id="per" style="font-size:11.5px;margin:8px 0 0">Shared room, 4 beds · 7 500 000 / week</p>
+        </div>
+        <ul class="incl">
+          <li>Room in the castle with amenities</li>
+          <li>10 training sessions a week</li>
+          <li>Professional photoshoot inside the castle</li>
+          <li>Individual growth roadmap</li>
+          <li>Ballet for aerialists — lines and stage presence</li>
+        </ul>
+        <button class="btn btn--brass" style="width:100%;margin-top:22px" id="campBook">Take this to booking</button>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ══ season ══ -->
+<section id="season">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="eyebrow">Season 2026</p>
+        <h2>The year<br>has a shape</h2>
+      </div>
+      <div><p class="lead">Terms, intensives, photo trips and one stage at the end of each semester. Adults follow the same calendar loosely; kids follow it exactly.</p></div>
+    </div>
+    <div class="time rv">
+      <article class="ev now">
+        <p class="when">July 2026 · running now</p>
+        <h3>Summer intensive</h3>
+        <p>Two sessions a day, creative projects, and a finale with a photoshoot at the end of the month.</p>
+      </article>
+      <article class="ev">
+        <p class="when">August 2026</p>
+        <h3>New academic year opens</h3>
+        <p>Groups reformed by level, places confirmed in order of enrolment. Trials run all month.</p>
+      </article>
+      <article class="ev">
+        <p class="when">Mid-October 2026</p>
+        <h3>Location photoshoot</h3>
+        <p>Rice fields, waterfall or ocean — the whole school travels for a day of shooting.</p>
+      </article>
+      <article class="ev">
+        <p class="when">1–20 December 2026</p>
+        <h3>Open classes, competitions, showcase</h3>
+        <p>Parents in the hall, a jury for the competitive groups, and the term ends on stage.</p>
+      </article>
+      <article class="ev">
+        <p class="when">January 2027</p>
+        <h3>Winter intensive</h3>
+        <p>Ten days of camp format between terms — open to visitors as well as students.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ coaches ══ -->
+<section id="coaches">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="eyebrow">Who teaches</p>
+        <h2>Performers<br>who still perform</h2>
+      </div>
+      <div><p class="lead">Between them: a state circus career, a ballet education, festival medals and years of putting acts on stage. They coach the way they were coached — precisely, and without shouting.</p></div>
+    </div>
+
+    <div class="coaches rv">
+      <article class="coach">
+        <div class="ph p3"><span class="tag">08 — Coach on straps, mid-act</span></div>
+        <div class="body">
+          <h3>Aerialist, circus director, teacher</h3>
+          <p class="dim" style="font-size:14.5px">Technique, safety, choreography and stage presence — the person who turns a trick sequence into a number.</p>
+          <ul>
+            <li><i>Trained</i><span>Ballet academy and choreography; state circus college; circus directing</span></li>
+            <li><i>Stage</i><span>Seven years as a staff aerialist in a major state circus, leading his own act; tours across Russia and France</span></li>
+            <li><i>Screen</i><span>Prime-time television circus and dance productions</span></li>
+            <li><i>Awards</i><span>Bronze at an international circus competition; audience prize in Massy, France</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="coach">
+        <div class="ph p6"><span class="tag">09 — Coach spotting on silks</span></div>
+        <div class="body">
+          <h3>Aerial coach, performer, act director</h3>
+          <p class="dim" style="font-size:14.5px">Silks, hoop, straps, hammock, net and rope — plus competition preparation and staging for students.</p>
+          <ul>
+            <li><i>Trained</i><span>Dance and fitness background, then aerial from 2019 — solo and duet work</span></li>
+            <li><i>Medals</i><span>Prizes at four international aerial festivals, 2019–2021</span></li>
+            <li><i>Directs</i><span>Student acts that place at competitions</span></li>
+            <li><i>Bali</i><span>Coaching and performing on the island since 2022, including national television</span></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+    <p class="note">Artists between contracts pass through constantly — expect visiting professionals in the hall and the occasional pop-up workshop.</p>
+  </div>
+</section>
+
+<!-- ══ faq ══ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><p class="eyebrow">Before you write to us</p><h2>Questions<br>we get daily</h2></div>
+      <div><p class="lead">If yours isn't here, message us — replies come within 15–30 minutes during working hours.</p></div>
+    </div>
+    <div class="faq rv">
+      <details><summary>I've never done aerial. Is it too late?</summary><div class="ans">No. Adult classes start from the floor: conditioning, first climbs, first inversions, always with a coach within arm's reach. Most people hang upside down on day one and leave grinning.</div></details>
+      <details><summary>Can I choose the apparatus?</summary><div class="ans">Yes — classes are mixed apparatus. Tell the coach whether you want silks, hoop, straps or hammock and the session is built around it. Nobody is locked into one piece of equipment.</div></details>
+      <details><summary>Is there a free trial?</summary><div class="ans">Adults living in Bali get one free trial within seven days. Kids get two. Visitors on short trips book a walk-in class instead — 600 000 IDR, and it counts toward a pack if you continue.</div></details>
+      <details><summary>Honestly, it looks expensive.</summary><div class="ans">It buys more than floor time: an 8 m rig with a winch, coaches with state circus careers, a term calendar with a stage at the end of it, and photo sessions built into the programme. Pay three months up front and the price drops.</div></details>
+      <details><summary>I don't have a scooter.</summary><div class="ans">You don't need one. We're in the centre of Ubud — cafés, spa, market and the shops are a walk away, and so are we.</div></details>
+      <details><summary>What if we miss a class or travel for two weeks?</summary><div class="ans">One make-up class a month with 24 hours' notice. Cancel later than that and the class is spent. For illness, missed lessons are made up separately. Travelling for a fortnight? We fit the pass to your dates.</div></details>
+      <details><summary>I'm a professional between contracts.</summary><div class="ans">This is what the camp was built for. A room upstairs, the hall every day, full rig and winch, and nobody asking you to explain your level. Come for a week or stay for a season.</div></details>
+      <details><summary>Where exactly are you?</summary><div class="ans">Central Ubud, Bali. The exact address and a pin go out with your booking confirmation.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ══ book ══ -->
+<section id="book" class="book">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><p class="eyebrow">Booking</p><h2>Hold your spot</h2></div>
+      <div><p class="lead">Choose what you want, leave a contact, pick how you'd like to pay. We confirm by WhatsApp within 15–30 minutes during working hours.</p></div>
+    </div>
+
+    <div class="form-grid rv">
+      <div class="panel-box">
+        <div class="steps"><span data-on="1">1 — What</span><span>2 — Who</span><span>3 — Pay</span></div>
+
+        <div class="field">
+          <label for="what">What are you booking?</label>
+          <select id="what">
+            <option value="trial">Free trial — adults, residents</option>
+            <option value="kidtrial">Free trials — kids, residents</option>
+            <option value="dropin">Single class — 600 000 IDR</option>
+            <option value="private">Private training — 1 500 000 IDR</option>
+            <option value="kids">Kids programme — from 4 900 000 IDR / month</option>
+            <option value="campsel">Live-in camp — from 7 500 000 IDR / week</option>
+          </select>
+        </div>
+
+        <div class="two">
+          <div class="field"><label for="name">Name</label><input id="name" type="text" placeholder="How should we greet you?"></div>
+          <div class="field"><label for="wa">WhatsApp or email</label><input id="wa" type="text" placeholder="+62 …"></div>
+        </div>
+
+        <div class="two">
+          <div class="field"><label for="date">Preferred start</label><input id="date" type="date"></div>
+          <div class="field"><label for="ppl">People</label><input id="ppl" type="number" min="1" value="1"></div>
+        </div>
+
+        <div class="field">
+          <label for="notes">Anything we should know</label>
+          <textarea id="notes" rows="3" placeholder="Level, injuries, apparatus you love, dates you're on the island"></textarea>
+        </div>
+
+        <div class="field">
+          <label>How you'd like to pay</label>
+          <div class="pays" id="pays">
+            <button type="button" class="pay on">Bank transfer</button>
+            <button type="button" class="pay">Card</button>
+            <button type="button" class="pay">Wise / Revolut</button>
+            <button type="button" class="pay">Cash at the castle</button>
+          </div>
+        </div>
+
+        <button class="btn btn--brass" id="send" style="width:100%;margin-top:8px">Send booking request</button>
+        <p class="msg" id="msg" hidden></p>
+      </div>
+
+      <aside class="summary">
+        <p class="eyebrow" style="margin-bottom:4px">Your booking</p>
+        <h3 id="sumTitle">Free trial</h3>
+        <dl>
+          <dt>Where</dt><dd>Circus Castle, central Ubud</dd>
+          <dt>Start</dt><dd id="sumDate">to confirm</dd>
+          <dt>People</dt><dd id="sumPpl">1</dd>
+          <dt>Payment</dt><dd id="sumPay">Bank transfer</dd>
+          <dt>Estimate</dt><dd id="sumPrice">Free</dd>
+        </dl>
+        <p class="dim" style="font-size:13.5px;margin-top:22px">Prices are in Indonesian rupiah. Nothing is charged from this page — payment happens after we confirm your place.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ══ footer ══ -->
+<div class="mband"><canvas id="band2" aria-hidden="true"></canvas></div>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a class="brand" href="#home" style="margin-bottom:18px">
+          <svg class="logo-mini" viewBox="115.3 137.1 293.3 293.3" aria-hidden="true"><use href="#logoMini"/></svg>
+          <span><b>Circus Castle</b><span>Feel it in the air</span></span>
+        </a>
+        <p class="dim" style="font-size:14.5px;max-width:34ch">A school, a rig and a residence for aerial artists in the middle of Ubud. Open every day of the year.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li>Central Ubud, Bali</li>
+          <li>Address on booking</li>
+          <li>Open 365 days</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Go to</h4>
+        <ul>
+          <li><a href="#prices">Prices</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#camp">Live-in camp</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Talk to us</h4>
+        <ul>
+          <li><a href="#book">WhatsApp</a></li>
+          <li><a href="#book">Instagram</a></li>
+          <li><a href="#book">Email</a></li>
+        </ul>
+        <a class="btn btn--brass btn--sm" href="#book" style="margin-top:16px">Book a trial</a>
+      </div>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:clamp(20px,4vw,48px);flex-wrap:wrap;margin-top:44px">
+      <div class="badge-wrap" style="width:clamp(150px,18vw,200px)"><svg class="logo-full" viewBox="115.3 137.1 293.3 293.3" role="img" aria-label="Circus Castle Bali"><use href="#logoFull"/></svg></div>
+      <p class="big-word" style="flex:1;min-width:220px;margin:0">Circus Castle</p>
+    </div>
+    <p class="logo-slot">Logo taken straight from the brand deck as vector — no redraw, no raster.</p>
+    <div class="fbot"><span>© 2026 Circus Castle Bali</span><span>Visual prototype — v1</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  const $=(s,c)=>(c||document).querySelector(s), $$=(s,c)=>[...(c||document).querySelectorAll(s)];
+  const idr=n=>new Intl.NumberFormat('en-US').format(n).replace(/,/g,' ')+' IDR';
+
+
+  /* --- the diamonds: brand mosaic, drawn and pushed around --- */
+  const PAL=['#f44aad','#00adef','#00a650','#f0471e'];
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  function mosaic(canvas,opts){
+    const o=Object.assign({cell:26,density:.62,live:false,fade:1},opts||{});
+    const ctx=canvas.getContext('2d');
+    let w=0,h=0,cols=0,rows=0,cells=[],dpr=Math.min(devicePixelRatio||1,2);
+    let px=-9999,py=-9999,raf=null;
+
+    function seedColor(i,j){
+      const n=Math.abs(Math.sin(i*12.9898+j*78.233)*43758.5453);
+      return {on:(n%1)<o.density, c:PAL[Math.floor((n*7)%4)]};
+    }
+    function build(){
+      const r=canvas.getBoundingClientRect();
+      w=Math.max(1,r.width); h=Math.max(1,r.height);
+      canvas.width=w*dpr; canvas.height=h*dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      const cell=w<620?o.cell*.74:o.cell;
+      cols=Math.ceil(w/cell)+2; rows=Math.ceil(h/cell)+2;
+      cells=[];
+      for(let j=0;j<rows;j++)for(let i=0;i<cols;i++){
+        const s=seedColor(i,j);
+        if(!s.on) continue;
+        cells.push({x:(i+.5)*cell-cell,y:(j+.5)*cell-cell,c:s.c,s:cell*.62});
+      }
+      draw();
+    }
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      const R=Math.min(w,h)*.42;
+      for(const d of cells){
+        let k=0;
+        if(o.live){
+          const dx=d.x-px, dy=d.y-py, dist=Math.hypot(dx,dy);
+          if(dist<R) k=1-dist/R;
+        }
+        const size=d.s*(1+k*0.85);
+        ctx.save();
+        ctx.translate(d.x,d.y);
+        ctx.rotate(Math.PI/4 + k*Math.PI/4);
+        ctx.globalAlpha=o.fade*(0.55+k*0.45);
+        ctx.fillStyle=d.c;
+        ctx.fillRect(-size/2,-size/2,size,size);
+        ctx.restore();
+      }
+      raf=null;
+    }
+    function queue(){ if(!raf) raf=requestAnimationFrame(draw); }
+    if(o.live && !reduce){
+      const move=e=>{
+        const r=canvas.getBoundingClientRect();
+        const t=e.touches?e.touches[0]:e;
+        px=t.clientX-r.left; py=t.clientY-r.top; queue();
+        canvas.parentElement&&canvas.parentElement.classList.add('touched');
+      };
+      canvas.addEventListener('pointermove',move,{passive:true});
+      canvas.addEventListener('pointerdown',move,{passive:true});
+      canvas.addEventListener('pointerleave',()=>{px=py=-9999;queue()},{passive:true});
+    }
+    let t; addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(build,180)},{passive:true});
+    build();
+    return {rebuild:build};
+  }
+
+  const small=innerWidth<760;
+  mosaic($('#heroMosaic'),{cell:small?22:30,density:small?.20:.30,live:true,fade:small?.34:.44});
+  mosaic($('#band1'),{cell:small?15:22,density:.7,fade:.92});
+  mosaic($('#band2'),{cell:small?15:22,density:.7,fade:.92});
+  mosaic($('#playMosaic'),{cell:small?20:26,density:.64,live:true,fade:.88});
+
+
+  /* --- grounds map --- */
+  const SPOTS={
+    castle:{n:1,t:'The castle',c:'var(--magenta)',ph:'p1',
+      d:'Built as a folly and finished as a training base. Stone, arches, and a garden that swallows the noise of Ubud two minutes away.',
+      m:[['Built','Ubud, central'],['Open','365 days']],a:[['See the camp','#camp'],['Prices','#prices']]},
+    hall:{n:2,t:'The 8 metre hall',c:'var(--green)',ph:'p2',
+      d:'The reason people fly here. Clear height for full silk drops, a rigged winch, crash mats and a trampoline along the wall.',
+      m:[['Ceiling','8 m'],['Rig','silks · hoop · straps · net'],['Extras','winch · trampoline']],a:[['Book a trial','#book'],['Schedule','#schedule']]},
+    rooms:{n:3,t:'Rooms in the castle',c:'var(--orange)',ph:'p5',
+      d:'Shared, twin and private. Camp guests sleep upstairs and walk down to train — no scooter, no commute, no excuses.',
+      m:[['Shared, 4 beds','7 500 000 / week'],['Twin','10 000 000 / week'],['Private','15 000 000 / week']],a:[['Live-in camp','#camp']]},
+    tea:{n:4,t:'Tea house',c:'var(--cyan)',ph:'p4',
+      d:'Where the day slows down. Between sessions people stretch here, drink something warm and stare at the water instead of a phone.',
+      m:[['Best at','late afternoon']],a:[['The grounds','#castle']]},
+    pond:{n:5,t:'Fish pond &amp; garden',c:'var(--cyan)',ph:'p4',
+      d:'Green, quiet, full of frogs at night. The nervous system settles here, and the training gets easier for it.',
+      m:[['Sound','birds, water, nothing else']],a:[]},
+    photo:{n:6,t:'The photo spot',c:'var(--magenta)',ph:'p6',
+      d:'Framed so the castle sits right behind you. Every Friday after class we shoot here — included, not an upsell.',
+      m:[['Fridays','after evening class'],['Camp','shoot inside the castle included']],a:[['Content &amp; shoots','#castle']]},
+    gate:{n:7,t:'Two minutes to Ubud',c:'var(--green)',ph:'p7',
+      d:'Out of the gate and you are in the middle of town — cafés, market, spa, shops. You will not need a scooter while you are here.',
+      m:[['On foot','centre of Ubud'],['Scooter','not required']],a:[['Book a trial','#book']]}
+  };
+  const gp=$('#gpanel'), gb=$('#gbody'), gkey=$('#gkey');
+  let openSpot=null;
+
+  function renderSpot(k){
+    const s0=SPOTS[k];
+    gp.style.setProperty('--gc',s0.c);
+    gb.innerHTML=`<div class="shot ${s0.ph}"><span class="tag">Photo — ${s0.t}</span></div>
+      <p class="eyebrow" style="--brass:${s0.c};color:${s0.c}">Stop ${s0.n} of 7</p>
+      <h3>${s0.t}</h3>
+      <p>${s0.d}</p>
+      <ul class="meta">${s0.m.map(r=>`<li><i>${r[0]}</i><span>${r[1]}</span></li>`).join('')}</ul>
+      <div class="acts">${s0.a.map(a=>`<a class="btn btn--ghost btn--sm" href="${a[1]}">${a[0]}</a>`).join('')}</div>`;
+  }
+  function openG(k){
+    if(openSpot===k){closeG();return}
+    openSpot=k; renderSpot(k); gp.classList.add('open');
+    $$('.hot').forEach(b=>b.setAttribute('aria-expanded', b.dataset.spot===k?'true':'false'));
+    $$('#gkey button').forEach(b=>b.classList.toggle('on', b.dataset.spot===k));
+  }
+  function closeG(){
+    openSpot=null; gp.classList.remove('open');
+    $$('.hot').forEach(b=>b.setAttribute('aria-expanded','false'));
+    $$('#gkey button').forEach(b=>b.classList.remove('on'));
+  }
+  $$('.hot').forEach(b=>b.addEventListener('click',()=>openG(b.dataset.spot)));
+  $('#gclose').addEventListener('click',closeG);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeG()});
+
+  gkey.innerHTML=Object.entries(SPOTS).map(([k,v])=>
+    `<button data-spot="${k}" style="--kc:${v.c}"><i></i>${v.n} — ${v.t}</button>`).join('');
+  $$('#gkey button').forEach(b=>b.addEventListener('click',()=>{
+    openG(b.dataset.spot);
+    document.getElementById('gmap').scrollIntoView({behavior:'smooth',block:'center'});
+  }));
+
+  /* --- menu --- */
+  const drawer=$('#drawer'), burger=$('#burger');
+  burger.addEventListener('click',()=>{drawer.classList.add('open');burger.setAttribute('aria-expanded','true')});
+  $('#close').addEventListener('click',close);
+  $$('#drawer a').forEach(a=>a.addEventListener('click',close));
+  function close(){drawer.classList.remove('open');burger.setAttribute('aria-expanded','false')}
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+
+  /* --- marquee: duplicate for a seamless loop --- */
+  const mq=$('#mq'); mq.innerHTML+=mq.innerHTML;
+
+  /* --- reveal on scroll --- */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  $$('.rv').forEach(el=>io.observe(el));
+
+  /* --- the silk rail --- */
+  const fill=$('#fill'), knots=$$('#knots button');
+  knots.forEach(b=>b.addEventListener('click',()=>{
+    const t=document.getElementById(b.dataset.go);
+    if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+  }));
+  const sections=knots.map(b=>document.getElementById(b.dataset.go)).filter(Boolean);
+  let ticking=false;
+  function onScroll(){
+    const h=document.documentElement.scrollHeight-innerHeight;
+    fill.style.height=Math.min(100,(scrollY/(h||1))*100)+'%';
+    let cur=0;
+    sections.forEach((s,i)=>{if(s.getBoundingClientRect().top<=innerHeight*.42) cur=i});
+    knots.forEach((b,i)=>b.setAttribute('aria-current',i===cur?'true':'false'));
+    ticking=false;
+  }
+  addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
+  onScroll();
+
+  /* --- price tabs --- */
+  const tabs=$$('.tab');
+  function showTab(id){
+    tabs.forEach(t=>{
+      const on=t.id==='tab-'+id;
+      t.setAttribute('aria-selected',on?'true':'false');
+      $('#pan-'+t.id.slice(4)).hidden=!on;
+    });
+  }
+  tabs.forEach(t=>t.addEventListener('click',()=>showTab(t.id.slice(4))));
+  $$('[data-jump]').forEach(b=>b.addEventListener('click',()=>{
+    const j=b.dataset.jump;
+    if(j==='camp-anchor'){document.getElementById('camp').scrollIntoView({behavior:'smooth'});return}
+    showTab(j);
+    document.getElementById('prices').scrollIntoView({behavior:'smooth'});
+  }));
+
+  /* --- schedule --- */
+  const week={
+    Mon:[['09:00','Aerial · all levels','Adults','1.5 h'],['11:00','Stretch &amp; conditioning','Adults','1 h'],['12:30','Self-practice','Approved only','3 h'],['17:00','Kids discovery · 5–8','Kids','1.5 h'],['18:30','Kids advanced','Kids','1.5 h']],
+    Tue:[['09:00','Silks technique','Adults','1.5 h'],['12:30','Self-practice','Approved only','3 h'],['17:00','Kids discovery · 5–8','Kids','1.5 h'],['18:30','Kids advanced','Kids','1.5 h'],['20:00','Aerial evening','Adults','1.5 h']],
+    Wed:[['09:00','Hoop &amp; hammock','Adults','1.5 h'],['11:00','Ballet for aerialists','All','1 h'],['12:30','Self-practice','Approved only','3 h'],['17:00','Kids discovery · 5–8','Kids','1.5 h'],['18:30','Kids advanced','Kids','1.5 h']],
+    Thu:[['09:00','Aerial · all levels','Adults','1.5 h'],['12:30','Self-practice','Approved only','3 h'],['17:00','Kids discovery · 5–8','Kids','1.5 h'],['18:30','Kids advanced','Kids','1.5 h'],['20:00','Aerial evening','Adults','1.5 h']],
+    Fri:[['09:00','Straps &amp; strength','Adults','1.5 h'],['12:30','Self-practice','Approved only','3 h'],['17:00','Kids discovery · 5–8','Kids','1.5 h'],['18:30','Kids advanced','Kids','1.5 h'],['20:00','Photo session in the garden','Everyone','1 h']],
+    Sat:[['09:30','Open class · mixed apparatus','Adults','1.5 h'],['11:30','Creative combos','Adults &amp; pros','1.5 h'],['16:00','Trampoline','Kids','1 h']],
+    Sun:[['10:00','Slow flow &amp; recovery','Everyone','1 h'],['11:30','Open training','Approved only','2 h']]
+  };
+  const days=$('#days'), slots=$('#slots');
+  Object.keys(week).forEach((d,i)=>{
+    const b=document.createElement('button');
+    b.type='button';b.role='tab';b.textContent=d;b.setAttribute('aria-selected',i===0?'true':'false');
+    b.addEventListener('click',()=>{
+      $$('button',days).forEach(x=>x.setAttribute('aria-selected','false'));
+      b.setAttribute('aria-selected','true');render(d);
+    });
+    days.appendChild(b);
+  });
+  function render(d){
+    slots.innerHTML=week[d].map(r=>`<div class="slot">
+      <span class="t">${r[0]}</span>
+      <span class="n">${r[1]}<small>${r[3]}</small></span>
+      <span class="who">${r[2]}</span>
+      <a class="btn btn--ghost btn--sm go" href="#book">Book</a>
+    </div>`).join('');
+  }
+  render('Mon');
+
+  /* --- camp calculator --- */
+  let weeks=2;
+  const wOut=$('#weeks'), wLab=$('#wlabel'), totalEl=$('#total'), perEl=$('#per');
+  function rate(){return +$('input[name=room]:checked').value}
+  function roomName(){return $('input[name=room]:checked').dataset.name}
+  function calc(){
+    wOut.textContent=weeks;
+    wLab.textContent=weeks===1?'week':'weeks';
+    totalEl.textContent=idr(rate()*weeks);
+    perEl.textContent=roomName()+' · '+idr(rate())+' / week';
+  }
+  $('#plus').addEventListener('click',()=>{weeks=Math.min(24,weeks+1);calc()});
+  $('#minus').addEventListener('click',()=>{weeks=Math.max(1,weeks-1);calc()});
+  $$('input[name=room]').forEach(r=>r.addEventListener('change',calc));
+  calc();
+
+  /* --- booking summary --- */
+  const priceMap={trial:[0,'Free'],kidtrial:[0,'Free — 2 classes'],dropin:[600000,''],private:[1500000,''],kids:[4900000,'from · per month'],campsel:[7500000,'from · per week']};
+  const what=$('#what'),sumTitle=$('#sumTitle'),sumPrice=$('#sumPrice'),sumDate=$('#sumDate'),sumPpl=$('#sumPpl'),sumPay=$('#sumPay');
+  function sync(){
+    const opt=what.options[what.selectedIndex];
+    sumTitle.textContent=opt.text.split('—')[0].trim();
+    const p=priceMap[what.value];
+    sumPrice.textContent=p[0]===0?p[1]:idr(p[0]*(what.value==='campsel'?weeks:1))+(p[1]?' · '+p[1]:'');
+    sumDate.textContent=$('#date').value||'to confirm';
+    sumPpl.textContent=$('#ppl').value||'1';
+  }
+  ['change','input'].forEach(ev=>{what.addEventListener(ev,sync);$('#date').addEventListener(ev,sync);$('#ppl').addEventListener(ev,sync)});
+  sync();
+
+  $$('#pays .pay').forEach(p=>p.addEventListener('click',()=>{
+    $$('#pays .pay').forEach(x=>x.classList.remove('on'));
+    p.classList.add('on');sumPay.textContent=p.textContent;
+  }));
+
+  $('#campBook').addEventListener('click',()=>{
+    what.value='campsel';sync();
+    sumTitle.textContent='Live-in camp · '+roomName()+' · '+weeks+(weeks===1?' week':' weeks');
+    sumPrice.textContent=idr(rate()*weeks);
+    document.getElementById('book').scrollIntoView({behavior:'smooth'});
+  });
+
+  $('#send').addEventListener('click',()=>{
+    const m=$('#msg');m.hidden=false;
+    if(!$('#name').value.trim()||!$('#wa').value.trim()){
+      m.textContent='Add a name and a WhatsApp number so we can confirm your place.';
+      m.style.color='#ff9d8f';m.style.borderColor='rgba(255,157,143,.5)';
+      return;
+    }
+    m.style.color='';m.style.borderColor='';
+    m.textContent='Visual prototype — nothing was sent yet. Once connected, this posts to WhatsApp / CRM and returns a confirmation with the address.';
+  });
+})();
+</script>
+</body>
+</html>

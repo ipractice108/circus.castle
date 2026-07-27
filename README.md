@@ -1,103 +1,56 @@
-# Circus Castle Bali - Landing Page
+# Circus Castle Bali — Landing Page
 
-A stunning, high-conversion landing page for Circus Castle Bali - a unique aerials and trampolines club in a real castle in Ubud, Bali.
+Landing page for Circus Castle Bali — aerial school, professional rig and castle
+residence in central Ubud.
 
-## 🎪 Features
-
-- **Modern Tech Stack**: Next.js 14 with App Router, TypeScript, Tailwind CSS
-- **Smooth Animations**: Framer Motion for sophisticated scroll effects and transitions
-- **Dark Mode First**: Premium sport & art aesthetic with high-contrast design
-- **Responsive Design**: Fully optimized for all devices
-- **SEO Optimized**: Proper metadata and semantic HTML structure
+Single self-contained static page: `index.html` carries all markup, CSS and JS
+inline. No build step, no dependencies, no bundler. The only external request is
+the Jost webfont from Google Fonts; every graphic is inline SVG or CSS.
 
 ## 🎨 Design System
 
-### Color Palette
-- **Background**: Near Black (#0A0A0A, #121212)
-- **Primary Accent**: Circus Orange (#FF5722)
-- **Secondary Accents**: Cyan (#00BCD4), Magenta (#E91E63)
-- **Text**: White (#FFFFFF), Light Gray (#B0B0B0)
+Palette lifted from the brand deck:
 
-### Typography
-- **Headings**: Oswald (Bold, Modern)
-- **Body**: Inter (Clean, Legible)
+- **Background**: warm black `#181310`, panels `#201915` / `#231f20`
+- **Accents**: magenta `#f44aad` (primary), cyan `#00adef`, green `#00a650`, orange `#f0471e`
+- **Text**: white `#ffffff`, muted `rgba(255,255,255,.62)`
+- **Type**: Avenir Next (brand face), Jost as the web fallback
 
-## 🚀 Getting Started
+Signature element: the silk — a scroll rail running down the page.
 
-### Prerequisites
-- Node.js 18+ installed
-- npm or yarn package manager
+## 🚀 Local preview
 
-### Installation
-
-1. Install dependencies:
-```bash
-npm install
-```
-
-2. Run the development server:
-```bash
-npm run dev
-```
-
-3. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-## 📦 Build for Production
+No install needed — open `index.html` in a browser, or serve the folder:
 
 ```bash
-npm run build
-npm start
+python3 -m http.server 8000
+# then open http://localhost:8000
 ```
 
-## 🌐 Deploy to Vercel
+## 🌐 Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new).
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/circus-castle-bali)
+Deployed on Vercel as a static site. `vercel.json` pins `framework: null` with no
+build or install command, so Vercel serves the repo root as-is. Pushing to the
+production branch triggers a deploy.
 
 ## 📁 Project Structure
 
 ```
 circus.castle/
-├── app/
-│   ├── layout.tsx          # Root layout with fonts
-│   ├── page.tsx            # Main landing page
-│   └── globals.css         # Global styles
-├── components/
-│   ├── ui/                 # Reusable UI components
-│   │   ├── Button.tsx
-│   │   ├── Card.tsx
-│   │   └── Section.tsx
-│   └── sections/           # Page sections
-│       ├── Hero.tsx
-│       ├── Philosophy.tsx
-│       ├── Disciplines.tsx
-│       ├── Retreats.tsx
-│       ├── Testimonials.tsx
-│       └── Footer.tsx
-├── public/                 # Static assets
-├── tailwind.config.ts      # Tailwind configuration
-├── tsconfig.json          # TypeScript configuration
-└── package.json           # Dependencies
-
+├── index.html      # the entire site
+├── favicon.svg
+├── robots.txt
+└── vercel.json     # static serving + security headers
 ```
 
-## 🎯 Key Sections
+## 📜 History
 
-1. **Hero** - Cinematic introduction with primary CTAs
-2. **Philosophy** - Core values and unique offerings
-3. **Disciplines** - Bento-grid layout showcasing aerial arts, acrobatics, trampoline, and ballet
-4. **Retreats & Photoshoots** - Exclusive programs and content creation opportunities
-5. **Testimonials** - Social proof and free trial offer
-6. **Footer** - Contact information and final CTAs
+The previous Next.js 14 / Tailwind / Framer Motion version of this site is kept
+on the **`legacy-nextjs`** branch and the **`legacy-nextjs-site`** tag.
 
-## 🛠️ Technologies Used
-
-- **Framework**: [Next.js 14](https://nextjs.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Animation**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
+```bash
+git checkout legacy-nextjs
+```
 
 ## 📝 License
 
