@@ -96,7 +96,7 @@ header{
 }
 .bar{display:flex;align-items:center;gap:22px;height:66px;max-width:1360px;margin:0 auto;padding-inline:var(--pad)}
 .brand{display:flex;align-items:center;gap:11px;margin-right:auto;flex:none}
-.brand .logo-mini{width:32px;height:32px}
+.brand .logo-mini{width:32px;height:32px;flex:none}
 .brand b{font-family:var(--display);font-size:16px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
 .brand span{font-family:var(--mono);font-weight:700;font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--magenta);display:block;margin-top:3px}
 .nav{display:none;gap:26px}
@@ -119,9 +119,31 @@ header{
 .btn--ghost:hover{border-color:var(--brass);color:var(--brass)}
 .btn--sm{padding:10px 16px;font-size:11px}
 .bar .btn{flex:none;padding:11px 18px}
+/* the bar CTA carries a long and a short label; the short one takes over
+   on narrow screens so the brand keeps its full size */
+.bar .btn .cta-short{display:none}
 
-.burger{display:grid;place-items:center;width:42px;height:42px;background:none;border:1px solid var(--hair);border-radius:50%;cursor:pointer}
+.burger{display:grid;place-items:center;width:42px;height:42px;flex:none;background:none;border:1px solid var(--hair);border-radius:50%;cursor:pointer}
 @media(min-width:1080px){.burger{display:none}}
+
+/* header on narrow screens: tighten the row, never the logo */
+@media(max-width:640px){
+  .bar{gap:14px}
+  .bar .btn{padding:10px 15px;font-size:11px;letter-spacing:.1em}
+  .bar .btn .cta-long{display:none}
+  .bar .btn .cta-short{display:inline}
+}
+@media(max-width:480px){
+  .bar{gap:12px}
+  .brand{gap:9px}
+  .brand b{font-size:14px;letter-spacing:.1em}
+  .brand span{letter-spacing:.18em}
+}
+/* under 360px there is no room for both — the logo wins,
+   booking stays one tap away in the drawer */
+@media(max-width:359px){
+  .bar .btn{display:none}
+}
 .burger i{display:block;width:15px;height:1.5px;background:var(--chalk);position:relative}
 .burger i::before,.burger i::after{content:"";position:absolute;left:0;width:15px;height:1.5px;background:var(--chalk)}
 .burger i::before{top:-5px}.burger i::after{top:5px}
@@ -521,7 +543,7 @@ footer{border-top:1px solid var(--hair);background:var(--night);padding-block:cl
       <a href="#season">Season</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="btn btn--brass" href="#book">Book a trial</a>
+    <a class="btn btn--brass" href="#book"><span class="cta-long">Book a trial</span><span class="cta-short">Book</span></a>
     <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><i></i></button>
   </div>
 </header>
