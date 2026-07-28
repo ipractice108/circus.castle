@@ -216,12 +216,18 @@ header{
 .hero-bg::after{content:"";position:absolute;inset:0;background:var(--grain);opacity:.5;mix-blend-mode:soft-light}
 .hero-photo{
   position:absolute;right:0;top:0;bottom:0;width:46%;z-index:-1;
-  background:linear-gradient(200deg,var(--brass),color-mix(in srgb,var(--brass) 30%,#181310) 45%,#181310 80%);
+  /* 42% keeps the aerialist in frame and clear of the badge; the panel is
+     narrow enough that cover crops most of the width away */
+  background:url("images/castle-facade.webp") 42% center/cover no-repeat,
+             linear-gradient(200deg,var(--brass),color-mix(in srgb,var(--brass) 30%,#181310) 45%,#181310 80%);
   -webkit-mask-image:linear-gradient(270deg,#000 30%,transparent 96%);
   mask-image:linear-gradient(270deg,#000 30%,transparent 96%);
   opacity:.9;
 }
-.hero-photo::after{content:"PHOTO 01 — silks under the castle lamps";position:absolute;left:18px;bottom:18px;font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:rgba(244,239,233,.35);text-transform:uppercase}
+/* the accent still washes over the photo, so the hero keeps drifting with the
+   rest of the palette instead of freezing the moment a real image lands */
+.hero-photo::before{content:"";position:absolute;inset:0;background:linear-gradient(210deg,var(--brass),transparent 62%);mix-blend-mode:soft-light;opacity:.75}
+.hero-photo::after{content:"PHOTO 01 — straps at the castle facade";position:absolute;left:18px;bottom:18px;font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:rgba(244,239,233,.35);text-transform:uppercase}
 @media(max-width:860px){.hero-photo{width:100%;opacity:.42;-webkit-mask-image:linear-gradient(0deg,#000 20%,transparent 88%);mask-image:linear-gradient(0deg,#000 20%,transparent 88%)}}
 .hero .wrap{width:100%;position:relative;z-index:2}
 #heroMosaic{cursor:default}
@@ -291,13 +297,19 @@ header{
 .shot.wide{width:min(90vw,600px);aspect-ratio:16/11}
 .shot::after{content:"";position:absolute;inset:0;background:var(--grain);opacity:.5;mix-blend-mode:overlay}
 .shot .tag{position:absolute;left:14px;bottom:13px;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,239,233,.82);background:rgba(24,19,16,.55);backdrop-filter:blur(6px);padding:6px 10px;border-radius:999px}
-.p1{background:linear-gradient(200deg,#f44aad,#5c1b46 60%,#181310)}
-.p2{background:linear-gradient(160deg,#00adef,#0b3550 62%,#181310)}
-.p3{background:linear-gradient(220deg,#f0471e,#4d1c10 62%,#181310)}
-.p4{background:linear-gradient(140deg,#00a650,#0d3524 70%,#181310)}
-.p5{background:linear-gradient(190deg,#f44aad,#00adef 55%,#181310)}
-.p6{background:linear-gradient(170deg,#f0471e,#f44aad 60%,#231f20)}
-.p7{background:linear-gradient(210deg,#00a650,#00adef 60%,#181310)}
+.p1{background:url("images/hero-aerial-castle.webp") center/cover no-repeat,linear-gradient(200deg,#f44aad,#5c1b46 60%,#181310)}
+.p2{background:url("images/hall-rig.webp") center/cover no-repeat,linear-gradient(160deg,#00adef,#0b3550 62%,#181310)}
+.p3{background:url("images/hoop-under-roof.webp") center/cover no-repeat,linear-gradient(220deg,#f0471e,#4d1c10 62%,#181310)}
+.p4{background:url("images/tea-house.webp") center/cover no-repeat,linear-gradient(140deg,#00a650,#0d3524 70%,#181310)}
+.p5{background:url("images/room-fourposter.webp") center/cover no-repeat,linear-gradient(190deg,#f44aad,#00adef 55%,#181310)}
+.p6{background:url("images/hoop-by-castle.webp") center/cover no-repeat,linear-gradient(170deg,#f0471e,#f44aad 60%,#231f20)}
+.p7{background:url("images/group-class.webp") center/cover no-repeat,linear-gradient(210deg,#00a650,#00adef 60%,#181310)}
+/* grounds shot for the pond stop, and the two coach cards */
+.p-garden{background:url("images/grounds-pavilions.webp") center/cover no-repeat,linear-gradient(140deg,#00a650,#0d3524 70%,#181310)}
+.c1{background:url("images/coach-hoop.webp") center 38%/cover no-repeat,linear-gradient(220deg,#f0471e,#4d1c10 62%,#181310)}
+.c2{background:url("images/coach-silks.webp") center 30%/cover no-repeat,linear-gradient(170deg,#f0471e,#f44aad 60%,#231f20)}
+/* still waiting on a photo — deliberately left as a gradient */
+.p-soon{background:linear-gradient(210deg,#00a650,#00adef 60%,#181310)}
 
 /* ---------- tabs ---------- */
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
@@ -692,15 +704,15 @@ footer{border-top:1px solid var(--hair);background:var(--night);padding-block:cl
     </div>
 
     <div class="rail-scroll rv" id="shots">
-      <figure class="shot p1" style="margin:0"><figcaption class="tag">01 — Castle facade at dusk</figcaption></figure>
+      <figure class="shot p1" style="margin:0"><figcaption class="tag">01 — Hoop at the castle door</figcaption></figure>
       <figure class="shot wide p2" style="margin:0"><figcaption class="tag">02 — The 8 m hall, rig and mats</figcaption></figure>
-      <figure class="shot p3" style="margin:0"><figcaption class="tag">03 — Silks under the lamp photo zone</figcaption></figure>
-      <figure class="shot p4" style="margin:0"><figcaption class="tag">04 — Garden, pond, tea house</figcaption></figure>
+      <figure class="shot p3" style="margin:0"><figcaption class="tag">03 — Hoop under the hall roof</figcaption></figure>
+      <figure class="shot p4" style="margin:0"><figcaption class="tag">04 — Tea house, low table and garden</figcaption></figure>
       <figure class="shot wide p5" style="margin:0"><figcaption class="tag">05 — Rooms in the castle</figcaption></figure>
-      <figure class="shot p6" style="margin:0"><figcaption class="tag">06 — Photo spot facing the castle</figcaption></figure>
-      <figure class="shot p7" style="margin:0"><figcaption class="tag">07 — Kids group, evening class</figcaption></figure>
+      <figure class="shot p6" style="margin:0"><figcaption class="tag">06 — Hoop rig facing the castle</figcaption></figure>
+      <figure class="shot p7" style="margin:0"><figcaption class="tag">07 — Group class on the mats</figcaption></figure>
     </div>
-    <p class="note">Placeholders. Drop your Drive photos in and the whole page changes character — this rail is built for tall vertical shots.</p>
+    <p class="note">Shot on site at the castle. The rail is built for tall vertical frames — send more and they drop straight in.</p>
   </div>
 </section>
 
@@ -1125,7 +1137,7 @@ footer{border-top:1px solid var(--hair);background:var(--night);padding-block:cl
 
     <div class="coaches rv">
       <article class="coach">
-        <div class="ph p3"><span class="tag">08 — Coach on straps, mid-act</span></div>
+        <div class="ph c1"><span class="tag">08 — Aerial hoop, main hall</span></div>
         <div class="body">
           <h3>Aerialist, circus director, teacher</h3>
           <p class="dim" style="font-size:14.5px">Technique, safety, choreography and stage presence — the person who turns a trick sequence into a number.</p>
@@ -1139,7 +1151,7 @@ footer{border-top:1px solid var(--hair);background:var(--night);padding-block:cl
       </article>
 
       <article class="coach">
-        <div class="ph p6"><span class="tag">09 — Coach spotting on silks</span></div>
+        <div class="ph c2"><span class="tag">09 — Silks rigged in the pavilion</span></div>
         <div class="body">
           <h3>Aerial coach, performer, act director</h3>
           <p class="dim" style="font-size:14.5px">Silks, hoop, straps, hammock, net and rope — plus competition preparation and staging for students.</p>
@@ -1388,13 +1400,13 @@ footer{border-top:1px solid var(--hair);background:var(--night);padding-block:cl
     tea:{n:4,t:'Tea house',c:'var(--cyan)',ph:'p4',
       d:'Where the day slows down. Between sessions people stretch here, drink something warm and stare at the water instead of a phone.',
       m:[['Best at','late afternoon']],a:[['The grounds','#castle']]},
-    pond:{n:5,t:'Fish pond &amp; garden',c:'var(--cyan)',ph:'p4',
+    pond:{n:5,t:'Fish pond &amp; garden',c:'var(--cyan)',ph:'p-garden',
       d:'Green, quiet, full of frogs at night. The nervous system settles here, and the training gets easier for it.',
       m:[['Sound','birds, water, nothing else']],a:[]},
     photo:{n:6,t:'The photo spot',c:'var(--magenta)',ph:'p6',
       d:'Framed so the castle sits right behind you. Every Friday after class we shoot here — included, not an upsell.',
       m:[['Fridays','after evening class'],['Camp','shoot inside the castle included']],a:[['Content &amp; shoots','#castle']]},
-    gate:{n:7,t:'Two minutes to Ubud',c:'var(--green)',ph:'p7',
+    gate:{n:7,t:'Two minutes to Ubud',c:'var(--green)',ph:'p-soon',
       d:'Out of the gate and you are in the middle of town — cafés, market, spa, shops. You will not need a scooter while you are here.',
       m:[['On foot','centre of Ubud'],['Scooter','not required']],a:[['Book a trial','#book']]}
   };
