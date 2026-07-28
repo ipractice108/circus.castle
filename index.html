@@ -625,9 +625,12 @@ footer{border-top:1px solid var(--hair);background:var(--night);padding-block:cl
 .pin .pccta{margin-top:10px;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--chalk);
   color:#181310;border-radius:7px;padding:8px;font-family:var(--mono);font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
 @media(max-width:760px){
-  .pin{width:30px;height:30px}
-  .pin .pcard{display:none}
-  .pin .plabel{display:block;opacity:.94;font-size:7px;letter-spacing:.04em;padding:2px 5px;top:calc(100% + 3px)}
+  /* pins cluster on the small map — always-on labels would overlap; the legend
+     below the map is the named index on mobile. Tap a pin to open its gallery. */
+  .pin{width:32px;height:32px}
+  .pin .pcard,.pin .plabel{display:none}
+  .gkey{gap:8px}
+  .gkey button{font-size:10px;padding:9px 15px 9px 11px}
 }
 @media(prefers-reduced-motion:reduce){.pin::before{animation:none}}
 /* legend */
