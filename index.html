@@ -324,6 +324,46 @@ header{
 /* still waiting on a photo — deliberately left as a gradient */
 .p-soon{background:linear-gradient(210deg,#00a650,#00adef 60%,#181310)}
 
+/* ---------- accommodation ---------- */
+.rooms-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:640px){.rooms-grid{grid-template-columns:1fr}}
+.room-card{position:relative;display:block;width:100%;aspect-ratio:4/5;margin:0;padding:0;border:1px solid var(--hair);border-radius:3px;overflow:hidden;cursor:pointer;background:var(--panel);color:var(--chalk);font-family:var(--body);text-align:left}
+.room-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.room-card::after{content:"";position:absolute;inset:0;background:var(--grain);opacity:.5;mix-blend-mode:overlay;pointer-events:none}
+.room-card:hover img,.room-card:focus-visible img{transform:scale(1.05)}
+.room-card:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.room-body{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:58px 18px 16px;display:flex;flex-direction:column;gap:6px;background:linear-gradient(to top,rgba(24,19,16,.94),rgba(24,19,16,.55) 55%,transparent)}
+.room-no{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass)}
+.room-no em{color:var(--dust);font-style:normal}
+.room-desc{font-size:14.5px;line-height:1.36;color:var(--chalk);max-width:36ch}
+.room-count{position:absolute;top:12px;right:12px;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,239,233,.82);background:rgba(24,19,16,.55);backdrop-filter:blur(6px);padding:6px 10px;border-radius:999px}
+
+/* ---------- room lightbox ---------- */
+.lightbox{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:clamp(12px,4vw,48px)}
+.lightbox[hidden]{display:none}
+.lb-backdrop{position:absolute;inset:0;background:rgba(12,9,7,.92);backdrop-filter:blur(4px)}
+.lb-stage{position:relative;z-index:2;margin:0;max-width:min(1100px,92vw);display:flex;flex-direction:column;align-items:center;gap:11px}
+#lbImg{max-width:100%;max-height:68vh;object-fit:contain;border-radius:3px;border:1px solid var(--hair);background:var(--ink)}
+.lb-cap{display:flex;gap:14px;align-items:baseline;justify-content:center;flex-wrap:wrap;font-size:13.5px;color:var(--chalk)}
+.lb-cap .mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--dust)}
+.lb-thumbs{display:flex;gap:8px;overflow-x:auto;max-width:min(1100px,92vw);padding:2px 2px 4px;scrollbar-width:thin;scrollbar-color:var(--brass-dim) transparent}
+.lb-thumbs::-webkit-scrollbar{height:4px}
+.lb-thumbs::-webkit-scrollbar-thumb{background:var(--brass-dim);border-radius:4px}
+.lb-thumbs button{flex:none;width:70px;height:52px;padding:0;border:0;border-radius:5px;overflow:hidden;cursor:pointer;
+  background:#12100e;opacity:.5;outline:2px solid transparent;outline-offset:1px;transition:opacity .2s,outline-color .2s}
+.lb-thumbs button img{width:100%;height:100%;object-fit:cover;display:block}
+.lb-thumbs button:hover{opacity:.85}
+.lb-thumbs button.on{opacity:1;outline-color:var(--brass)}
+@media(max-width:640px){.lb-thumbs button{width:56px;height:42px}#lbImg{max-height:60vh}}
+.lb-btn{position:absolute;z-index:3;display:flex;align-items:center;justify-content:center;border:1px solid var(--hair);background:rgba(24,19,16,.6);backdrop-filter:blur(6px);color:var(--chalk);cursor:pointer;border-radius:999px;line-height:1;transition:background .2s,border-color .2s}
+.lb-btn:hover{background:rgba(24,19,16,.9);border-color:var(--brass)}
+.lb-btn:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.lb-close{top:clamp(12px,4vw,28px);right:clamp(12px,4vw,28px);width:44px;height:44px;font-size:17px}
+.lb-nav{top:50%;transform:translateY(-50%);width:52px;height:52px;font-size:30px;padding-bottom:4px}
+.lb-prev{left:clamp(8px,3vw,26px)}
+.lb-next{right:clamp(8px,3vw,26px)}
+@media(max-width:640px){.lb-nav{width:44px;height:44px;font-size:24px}.lb-prev{left:6px}.lb-next{right:6px}}
+
 /* ---------- tabs ---------- */
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
 .tab{
@@ -548,49 +588,54 @@ footer{border-top:1px solid var(--hair);background:var(--night);padding-block:cl
 }
 
 /* ---------- interactive grounds map ---------- */
-.gmap{position:relative;aspect-ratio:16/10;border:1px solid var(--hair);border-radius:3px;overflow:hidden;background:#12100e}
-@media(max-width:760px){.gmap{aspect-ratio:4/5}}
-.gmap .plan{position:absolute;inset:0;width:100%;height:100%}
-.gmap .photo-layer{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0}
-.hot{position:absolute;transform:translate(-50%,-50%);z-index:3;background:none;border:0;padding:0;cursor:pointer;
-  width:38px;height:38px;display:grid;place-items:center}
-.hot i{width:22px;height:22px;transform:rotate(45deg);background:var(--hc,var(--magenta));display:block;
-  box-shadow:0 0 0 0 var(--hc,var(--magenta));transition:transform .3s cubic-bezier(.16,.84,.3,1),box-shadow .3s}
-.hot::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid transparent;transition:border-color .3s}
-.hot:hover i,.hot:focus-visible i{transform:rotate(45deg) scale(1.35);box-shadow:0 0 0 7px rgba(255,255,255,.1)}
-.hot[aria-expanded="true"] i{transform:rotate(90deg) scale(1.35)}
-.hot b{position:absolute;font-family:var(--mono);font-weight:800;font-size:10px;color:#181310;pointer-events:none}
-.hot span{position:absolute;left:50%;top:calc(100% + 4px);transform:translateX(-50%);white-space:nowrap;
-  font-family:var(--mono);font-weight:700;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--chalk);background:rgba(18,16,14,.82);padding:4px 8px;border-radius:999px;opacity:0;transition:opacity .25s;pointer-events:none}
-.hot:hover span,.hot:focus-visible span{opacity:1}
-@media(max-width:760px){.hot span{display:none}}
-
-.gpanel{position:absolute;right:0;top:0;bottom:0;width:min(88%,360px);z-index:5;
-  background:rgba(24,19,16,.94);backdrop-filter:blur(14px);border-left:1px solid var(--hair);
-  padding:26px 24px;transform:translateX(101%);transition:transform .45s cubic-bezier(.16,.84,.3,1);
-  display:flex;flex-direction:column;overflow-y:auto}
-.gpanel.open{transform:none}
+.gmap{position:relative;border:1px solid var(--hair);border-radius:3px;overflow:hidden;background:#12100e}
+.gmap-img{display:block;width:100%;height:auto}
+.pins{position:absolute;inset:0;z-index:3}
+.pin{position:absolute;transform:translate(-50%,-50%);width:38px;height:38px;padding:0;border:0;background:none;cursor:pointer}
+/* staggered pulse so it reads as tappable */
+.pin::before{content:"";position:absolute;left:50%;top:50%;width:100%;height:100%;border-radius:50%;
+  transform:translate(-50%,-50%);pointer-events:none;z-index:-1;
+  animation:pinpulse 2.6s ease-out infinite;animation-delay:var(--pd,0s)}
+@keyframes pinpulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--pc,#fff) 70%,transparent)}
+  70%{box-shadow:0 0 0 12px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.pin:hover::before,.pin:focus-within::before{animation:none}
+.pin .chip{display:block;width:100%;height:100%;border-radius:50%;overflow:hidden;border:2px solid var(--chalk);
+  box-shadow:0 1px 6px rgba(0,0,0,.55),0 0 0 1px var(--pc,var(--magenta));transition:transform .25s;background:#12100e}
+.pin .chip img{width:100%;height:100%;object-fit:cover;display:block}
+.pin:hover .chip,.pin:focus-visible .chip{transform:scale(1.14)}
+.pin .plabel{position:absolute;left:50%;top:calc(100% + 5px);transform:translateX(-50%);white-space:nowrap;
+  font-family:var(--mono);font-weight:700;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--chalk);background:rgba(18,16,14,.85);padding:4px 8px;border-radius:999px;pointer-events:none;
+  opacity:0;transition:opacity .25s}
+.pin:hover .plabel,.pin:focus-visible .plabel{opacity:1}
+/* hover card — positioned by JS-set flip/edge classes so it always stays inside the map */
+.pin .pcard{position:absolute;left:50%;margin-left:-115px;bottom:calc(100% + 10px);width:230px;
+  background:rgba(24,19,16,.96);backdrop-filter:blur(10px);border:1px solid var(--hair);
+  border-radius:11px;overflow:hidden;box-shadow:0 14px 36px rgba(0,0,0,.55);opacity:0;pointer-events:none;
+  transform:translateY(6px);transition:opacity .2s ease-out,transform .2s ease-out;z-index:6}
+.pin.flip-down .pcard{bottom:auto;top:calc(100% + 10px);transform:translateY(-6px)}
+.pin.edge-l .pcard{margin-left:-24px}
+.pin.edge-r .pcard{left:auto;right:50%;margin-left:0;margin-right:-24px}
+.pin:hover .pcard,.pin:focus-within .pcard{opacity:1;transform:translateY(0);pointer-events:auto}
+.pin .pcimg{display:block;height:140px;background:#12100e}
+.pin .pcimg img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.pin .pcbody{display:block;padding:11px 13px 13px;text-align:left}
+.pin .pctag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--pc,var(--magenta))}
+.pin .pcbody h4{margin:3px 0 0;font-size:15px;font-weight:800;color:var(--chalk)}
+.pin .pccta{margin-top:10px;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--chalk);
+  color:#181310;border-radius:7px;padding:8px;font-family:var(--mono);font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
 @media(max-width:760px){
-  .gpanel{right:0;left:0;top:auto;width:auto;height:64%;border-left:0;border-top:1px solid var(--hair);
-    transform:translateY(101%);border-radius:14px 14px 0 0}
-  .gpanel.open{transform:none}
+  .pin{width:30px;height:30px}
+  .pin .pcard{display:none}
+  .pin .plabel{display:block;opacity:.94;font-size:7px;letter-spacing:.04em;padding:2px 5px;top:calc(100% + 3px)}
 }
-.gpanel .shot{width:100%;aspect-ratio:4/3;margin-bottom:18px}
-.gpanel h3{font-size:23px;margin-bottom:8px}
-.gpanel p{color:var(--dust);font-size:14.5px}
-.gpanel .meta{margin:0 0 18px;padding:0;list-style:none;font-size:13.5px;color:var(--dust);border-top:1px solid var(--hair)}
-.gpanel .meta li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--hair)}
-.gpanel .meta i{font-style:normal;font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gc,var(--magenta))}
-.gpanel .close{position:absolute;right:16px;top:16px;width:34px;height:34px;border-radius:50%;
-  border:1px solid var(--hair);background:rgba(24,19,16,.6);cursor:pointer;font-size:15px;line-height:1}
-.gpanel .acts{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap;padding-top:18px}
+@media(prefers-reduced-motion:reduce){.pin::before{animation:none}}
+/* legend */
 .gkey{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
 .gkey button{display:flex;align-items:center;gap:8px;border:1px solid var(--hair);background:none;cursor:pointer;
   border-radius:999px;padding:7px 14px 7px 9px;color:var(--dust);
   font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.13em;text-transform:uppercase;transition:all .25s}
 .gkey button:hover{color:var(--chalk);border-color:rgba(255,255,255,.35)}
-.gkey button.on{border-color:var(--kc);color:var(--kc)}
 .gkey i{width:11px;height:11px;transform:rotate(45deg);background:var(--kc);display:block;flex:none}
 
 /* ---------- boot screen ----------
@@ -653,6 +698,7 @@ footer{border-top:1px solid var(--hair);background:var(--night);padding-block:cl
     <nav class="nav" aria-label="Main">
       <a href="#castle">The castle</a>
       <a href="#grounds">The grounds</a>
+      <a href="#rooms">Accommodation</a>
       <a href="#paths">Ways in</a>
       <a href="#prices">Prices</a>
       <a href="#schedule">Schedule</a>
@@ -668,6 +714,7 @@ footer{border-top:1px solid var(--hair);background:var(--night);padding-block:cl
 <div class="drawer" id="drawer">
   <button class="close" id="close" aria-label="Close menu">✕</button>
   <a href="#castle">The castle</a>
+  <a href="#rooms">Accommodation</a>
   <a href="#paths">Ways in</a>
   <a href="#prices">Prices</a>
   <a href="#schedule">Schedule</a>
@@ -683,6 +730,7 @@ footer{border-top:1px solid var(--hair);background:var(--night);padding-block:cl
     <li><button data-go="home"><span class="knot"></span>Top</button></li>
     <li><button data-go="castle"><span class="knot"></span>Castle</button></li>
     <li><button data-go="grounds"><span class="knot"></span>Grounds</button></li>
+    <li><button data-go="rooms"><span class="knot"></span>Rooms</button></li>
     <li><button data-go="paths"><span class="knot"></span>Ways in</button></li>
     <li><button data-go="prices"><span class="knot"></span>Prices</button></li>
     <li><button data-go="schedule"><span class="knot"></span>Schedule</button></li>
@@ -765,64 +813,83 @@ footer{border-top:1px solid var(--hair);background:var(--night);padding-block:cl
         <p class="eyebrow">The grounds</p>
         <h2>Walk the<br>place first</h2>
       </div>
-      <div><p class="lead">Everything sits inside one walled garden: the hall, the rooms you sleep in, the pond, the tea house and the spot people shoot from. Tap a marker to look inside.</p></div>
+      <div><p class="lead">Everything sits inside one walled garden: the training hall, the rooms you sleep in, the ballet studio, the tea house and the spots people shoot from. Tap a pin on the aerial to look inside.</p></div>
     </div>
 
     <div class="gmap rv" id="gmap">
-      <div class="photo-layer" id="photoLayer"></div>
-      <svg class="plan" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <rect width="1600" height="1000" fill="#14120f"/>
-        <path d="M0 0h1600v1000H0z" fill="url(#garden)"/>
-        <defs>
-          <linearGradient id="garden" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#12301f" stop-opacity=".9"/>
-            <stop offset="1" stop-color="#14120f" stop-opacity=".95"/>
-          </linearGradient>
-        </defs>
-        <!-- paths -->
-        <path d="M120 880 C 420 840 520 690 700 640 S 1080 560 1280 300" stroke="rgba(255,255,255,.16)" stroke-width="16" fill="none" stroke-linecap="round" stroke-dasharray="2 30"/>
-        <path d="M700 640 C 780 760 980 800 1300 780" stroke="rgba(255,255,255,.12)" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="2 26"/>
-        <!-- pond -->
-        <ellipse cx="1180" cy="775" rx="150" ry="88" fill="#0b3d52" opacity=".85"/>
-        <ellipse cx="1180" cy="775" rx="150" ry="88" fill="none" stroke="#00adef" stroke-opacity=".45" stroke-width="3"/>
-        <!-- castle footprint -->
-        <g opacity=".95">
-          <rect x="560" y="230" width="330" height="300" fill="#221b16" stroke="#f44aad" stroke-width="4"/>
-          <rect x="600" y="180" width="60" height="60" fill="#221b16" stroke="#f44aad" stroke-width="4"/>
-          <rect x="790" y="180" width="60" height="60" fill="#221b16" stroke="#f44aad" stroke-width="4"/>
-        </g>
-        <!-- training hall -->
-        <rect x="920" y="300" width="300" height="230" fill="#1b2620" stroke="#00a650" stroke-width="4"/>
-        <!-- rooms wing -->
-        <rect x="300" y="330" width="210" height="260" fill="#241a1a" stroke="#f0471e" stroke-width="4"/>
-        <!-- tea house -->
-        <path d="M1330 640 l70 -70 70 70 -22 0 0 90 -96 0 0 -90z" fill="#1d2422" stroke="#00adef" stroke-width="4"/>
-        <!-- trees -->
-        <g fill="#1c4a2e" opacity=".8">
-          <circle cx="210" cy="200" r="52"/><circle cx="330" cy="150" r="38"/><circle cx="1450" cy="230" r="46"/>
-          <circle cx="1380" cy="330" r="34"/><circle cx="180" cy="700" r="44"/><circle cx="420" cy="810" r="38"/>
-          <circle cx="880" cy="880" r="50"/><circle cx="1520" cy="880" r="42"/><circle cx="1000" cy="120" r="40"/>
-        </g>
-      </svg>
-
-      <button class="hot" style="left:45%;top:36%;--hc:var(--magenta)" data-spot="castle" aria-expanded="false" aria-controls="gpanel"><i></i><b>1</b><span>The castle</span></button>
-      <button class="hot" style="left:67%;top:41%;--hc:var(--green)" data-spot="hall" aria-expanded="false" aria-controls="gpanel"><i></i><b>2</b><span>8 m hall</span></button>
-      <button class="hot" style="left:25%;top:46%;--hc:var(--orange)" data-spot="rooms" aria-expanded="false" aria-controls="gpanel"><i></i><b>3</b><span>Rooms</span></button>
-      <button class="hot" style="left:88%;top:68%;--hc:var(--cyan)" data-spot="tea" aria-expanded="false" aria-controls="gpanel"><i></i><b>4</b><span>Tea house</span></button>
-      <button class="hot" style="left:74%;top:78%;--hc:var(--cyan)" data-spot="pond" aria-expanded="false" aria-controls="gpanel"><i></i><b>5</b><span>Pond</span></button>
-      <button class="hot" style="left:33%;top:72%;--hc:var(--magenta)" data-spot="photo" aria-expanded="false" aria-controls="gpanel"><i></i><b>6</b><span>Photo spot</span></button>
-      <button class="hot" style="left:12%;top:88%;--hc:var(--green)" data-spot="gate" aria-expanded="false" aria-controls="gpanel"><i></i><b>7</b><span>To Ubud centre</span></button>
-
-      <aside class="gpanel" id="gpanel" aria-live="polite">
-        <button class="close" id="gclose" aria-label="Close">✕</button>
-        <div id="gbody"></div>
-      </aside>
+      <img class="gmap-img" id="gmapImg" src="images/grounds-drone.webp" alt="Aerial view of the Circus Castle grounds" loading="lazy" width="1800" height="1133">
+      <div class="pins" id="pins"></div>
     </div>
 
     <div class="gkey" id="gkey"></div>
-    <p class="note">Plan drawn to scale-ish for layout. Drop in the drone shot and the markers stay where they are — they sit on percentages, not on the image.</p>
+    <p class="note">Tap a pin to look inside. Shot on site — send more frames for any zone and they drop straight in.</p>
   </div>
 </section>
+
+<!-- ══ accommodation ══ -->
+<section id="rooms">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="eyebrow">Where you sleep</p>
+        <h2>Four rooms<br>in the castle</h2>
+      </div>
+      <div>
+        <p class="lead">The rooms are why people stay for months instead of a week. A carved four-poster under the timber trusses, terracotta floors and columns, a canopy bed by the bamboo — and a shared bunk room for the live-in camp. Tap a room to look inside.</p>
+        <p class="mono dim" style="font-size:12px;letter-spacing:.12em">All ensuite · two minutes on foot to the hall</p>
+      </div>
+    </div>
+
+    <div class="rooms-grid rv">
+      <button class="room-card" type="button" data-room="01" aria-haspopup="dialog" aria-label="Open photos of Room 01">
+        <img src="images/room-01-card.webp" alt="Room 01 — terracotta floors, white columns and blue kilims" loading="lazy" width="900" height="600">
+        <span class="room-body">
+          <span class="room-no">Room 01</span>
+          <span class="room-desc">Terracotta floors, white columns and blue kilims — with a stone-walled bath.</span>
+        </span>
+        <span class="room-count" aria-hidden="true">8 photos</span>
+      </button>
+      <button class="room-card" type="button" data-room="02" aria-haspopup="dialog" aria-label="Open photos of Room 02">
+        <img src="images/room-02-card.webp" alt="Room 02 — shared bunk beds for the live-in camp" loading="lazy" width="900" height="600">
+        <span class="room-body">
+          <span class="room-no">Room 02 <em>· the camp room</em></span>
+          <span class="room-desc">Shared bunks for the live-in camp — sleeps four, pebble-floor bath.</span>
+        </span>
+        <span class="room-count" aria-hidden="true">5 photos</span>
+      </button>
+      <button class="room-card tall" type="button" data-room="03" aria-haspopup="dialog" aria-label="Open photos of Room 03">
+        <img src="images/room-03-card.webp" alt="Room 03 — a carved four-poster under the timber trusses" loading="lazy" width="600" height="900">
+        <span class="room-body">
+          <span class="room-no">Room 03</span>
+          <span class="room-desc">A carved four-poster under the timber trusses, gothic arched windows.</span>
+        </span>
+        <span class="room-count" aria-hidden="true">7 photos</span>
+      </button>
+      <button class="room-card" type="button" data-room="04" aria-haspopup="dialog" aria-label="Open photos of Room 04">
+        <img src="images/room-04-card.webp" alt="Room 04 — a canopy bed in white and teal" loading="lazy" width="900" height="600">
+        <span class="room-body">
+          <span class="room-no">Room 04</span>
+          <span class="room-desc">A canopy bed in white and teal, and a tub by the bamboo.</span>
+        </span>
+        <span class="room-count" aria-hidden="true">6 photos</span>
+      </button>
+    </div>
+    <p class="note">Photographed on site at the castle. Tap any room to open the full set — send more frames and they drop straight in.</p>
+  </div>
+</section>
+
+<!-- room lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Room photos" hidden>
+  <div class="lb-backdrop" data-lb-close></div>
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-btn lb-nav lb-prev" id="lbPrev" aria-label="Previous photo">‹</button>
+  <figure class="lb-stage">
+    <img id="lbImg" alt="">
+    <figcaption class="lb-cap"><span id="lbTitle"></span><span class="mono" id="lbIdx"></span></figcaption>
+    <div class="lb-thumbs" id="lbThumbs" role="tablist" aria-label="Gallery thumbnails"></div>
+  </figure>
+  <button class="lb-btn lb-nav lb-next" id="lbNext" aria-label="Next photo">›</button>
+</div>
 
 <!-- ══ ways in ══ -->
 <section id="paths">
@@ -1430,64 +1497,99 @@ footer{border-top:1px solid var(--hair);background:var(--night);padding-block:cl
   mosaic($('#band1'),{cell:small?15:22,density:.7,fade:.92});
   mosaic($('#band2'),{cell:small?15:22,density:.7,fade:.92});
 
-  /* --- grounds map --- */
-  const SPOTS={
-    castle:{n:1,t:'The castle',c:'var(--magenta)',ph:'p1',
-      d:'Built as a folly and finished as a training base. Stone, arches, and a garden that swallows the noise of Ubud two minutes away.',
-      m:[['Built','Ubud, central'],['Open','365 days']],a:[['See the camp','#camp'],['Prices','#prices']]},
-    hall:{n:2,t:'The 8 metre hall',c:'var(--green)',ph:'p2',
-      d:'The reason people fly here. Clear height for full silk drops, a rigged winch, crash mats and a trampoline along the wall.',
-      m:[['Ceiling','8 m'],['Rig','silks · hoop · straps · net'],['Extras','winch · trampoline']],a:[['Book a trial','#book'],['Schedule','#schedule']]},
-    rooms:{n:3,t:'Rooms in the castle',c:'var(--orange)',ph:'p5',
-      d:'Shared, twin and private. Camp guests sleep upstairs and walk down to train — no scooter, no commute, no excuses.',
-      m:[['Shared, 4 beds','7 500 000 / week'],['Twin','10 000 000 / week'],['Private','15 000 000 / week']],a:[['Live-in camp','#camp']]},
-    tea:{n:4,t:'Tea house',c:'var(--cyan)',ph:'p4',
-      d:'Where the day slows down. Between sessions people stretch here, drink something warm and stare at the water instead of a phone.',
-      m:[['Best at','late afternoon']],a:[['The grounds','#castle']]},
-    pond:{n:5,t:'Fish pond &amp; garden',c:'var(--cyan)',ph:'p-garden',
-      d:'Green, quiet, full of frogs at night. The nervous system settles here, and the training gets easier for it.',
-      m:[['Sound','birds, water, nothing else']],a:[]},
-    photo:{n:6,t:'The photo spot',c:'var(--magenta)',ph:'p6',
-      d:'Framed so the castle sits right behind you. Every Friday after class we shoot here — included, not an upsell.',
-      m:[['Fridays','after evening class'],['Camp','shoot inside the castle included']],a:[['Content &amp; shoots','#castle']]},
-    gate:{n:7,t:'Two minutes to Ubud',c:'var(--green)',ph:'p-soon',
-      d:'Out of the gate and you are in the middle of town — cafés, market, spa, shops. You will not need a scooter while you are here.',
-      m:[['On foot','centre of Ubud'],['Scooter','not required']],a:[['Book a trial','#book']]}
-  };
-  const gp=$('#gpanel'), gb=$('#gbody'), gkey=$('#gkey');
-  let openSpot=null;
+  /* --- shared lightbox (rooms + grounds pins) --- */
+  const LB=(function(){
+    const box=$('#lightbox'); if(!box) return null;
+    const img=$('#lbImg'), titleEl=$('#lbTitle'), idxEl=$('#lbIdx'), thumbsEl=$('#lbThumbs');
+    let srcs=[],i=0,opener=null,title='',thumbBtns=[];
+    function build(){
+      thumbsEl.innerHTML='';
+      thumbBtns=srcs.map((s,k)=>{
+        const b=document.createElement('button'); b.type='button'; b.setAttribute('role','tab');
+        b.setAttribute('aria-label','Photo '+(k+1));
+        const im=document.createElement('img'); im.src=s; im.alt=''; im.loading='lazy';
+        b.appendChild(im);
+        b.addEventListener('click',()=>{ i=k; show(); });
+        thumbsEl.appendChild(b); return b;
+      });
+    }
+    function show(){
+      i=(i+srcs.length)%srcs.length;
+      img.src=srcs[i]; img.alt=title+' — photo '+(i+1);
+      titleEl.textContent=title; idxEl.textContent=(i+1)+' / '+srcs.length;
+      thumbBtns.forEach((b,k)=>{ const on=k===i; b.classList.toggle('on',on); b.setAttribute('aria-selected',on?'true':'false'); });
+      if(thumbBtns[i]) thumbBtns[i].scrollIntoView({block:'nearest',inline:'center'});
+    }
+    function open(t,arr,btn){
+      if(!arr||!arr.length)return;
+      title=t;srcs=arr;i=0;opener=btn||null;
+      build();
+      box.hidden=false;document.body.style.overflow='hidden';show();$('#lbClose').focus();
+    }
+    function close(){box.hidden=true;document.body.style.overflow='';if(opener)opener.focus();}
+    $('#lbClose').addEventListener('click',close);
+    $('#lbPrev').addEventListener('click',()=>{i--;show();});
+    $('#lbNext').addEventListener('click',()=>{i++;show();});
+    box.querySelector('[data-lb-close]').addEventListener('click',close);
+    document.addEventListener('keydown',e=>{
+      if(box.hidden)return;
+      if(e.key==='Escape')close();
+      else if(e.key==='ArrowLeft'){i--;show();}
+      else if(e.key==='ArrowRight'){i++;show();}
+    });
+    return {open};
+  })();
 
-  function renderSpot(k){
-    const s0=SPOTS[k];
-    gp.style.setProperty('--gc',s0.c);
-    gb.innerHTML=`<div class="shot ${s0.ph}"><span class="tag">Photo — ${s0.t}</span></div>
-      <p class="eyebrow" style="--brass:${s0.c};color:${s0.c}">Stop ${s0.n} of 7</p>
-      <h3>${s0.t}</h3>
-      <p>${s0.d}</p>
-      <ul class="meta">${s0.m.map(r=>`<li><i>${r[0]}</i><span>${r[1]}</span></li>`).join('')}</ul>
-      <div class="acts">${s0.a.map(a=>`<a class="btn btn--ghost btn--sm" href="${a[1]}">${a[0]}</a>`).join('')}</div>`;
-  }
-  function openG(k){
-    if(openSpot===k){closeG();return}
-    openSpot=k; renderSpot(k); gp.classList.add('open');
-    $$('.hot').forEach(b=>b.setAttribute('aria-expanded', b.dataset.spot===k?'true':'false'));
-    $$('#gkey button').forEach(b=>b.classList.toggle('on', b.dataset.spot===k));
-  }
-  function closeG(){
-    openSpot=null; gp.classList.remove('open');
-    $$('.hot').forEach(b=>b.setAttribute('aria-expanded','false'));
-    $$('#gkey button').forEach(b=>b.classList.remove('on'));
-  }
-  $$('.hot').forEach(b=>b.addEventListener('click',()=>openG(b.dataset.spot)));
-  $('#gclose').addEventListener('click',closeG);
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeG()});
+  /* --- grounds map: pins + galleries + move mode --- */
+  (function(){
+    const map=$('#gmap'), pinsEl=$('#pins'); if(!map||!pinsEl||!LB) return;
+    const ZONES=[
+      {k:'tea',      t:'Tea house',             tag:'The grounds', c:'var(--cyan)'},
+      {k:'outdoor',  t:'Photo spot · castle',   tag:'Shoots',      c:'var(--magenta)'},
+      {k:'training', t:'Training area',         tag:'The hall',    c:'var(--green)'},
+      {k:'ballet',   t:'Ballet room',           tag:'Studio',      c:'var(--orange)'},
+      {k:'lanterns', t:'Photo zone · lanterns', tag:'Shoots',      c:'var(--magenta)'},
+      {k:'room4',    t:'Room 4',                tag:'Stay',        c:'var(--orange)'},
+      {k:'rooms',    t:'Rooms in the castle',   tag:'Stay',        c:'var(--cyan)'}
+    ];
+    const list=(pre,n)=>Array.from({length:n},(_,i)=>`images/${pre}-${i+1}.webp`);
+    const GAL={
+      tea:list('zone-tea',5), outdoor:list('zone-outdoor',8), training:list('zone-training',9),
+      ballet:list('zone-ballet',7), lanterns:list('zone-lanterns',6), room4:list('room-04',6),
+      rooms:[...list('room-01',8),...list('room-02',5),...list('room-03',7)]
+    };
+    // pin positions — placed on the real drone photo, baked in
+    const POS={tea:{x:50.75,y:18.97},outdoor:{x:59.52,y:32.11},training:{x:75.69,y:43.86},
+      ballet:{x:54.6,y:50.28},lanterns:{x:44.9,y:65.48},room4:{x:58.21,y:69.53},rooms:{x:21.89,y:63.11}};
+    const els={};
+    ZONES.forEach((z,idx)=>{
+      const n=GAL[z.k].length;
+      const b=document.createElement('button');
+      b.className='pin'; b.type='button'; b.dataset.k=z.k;
+      b.style.setProperty('--pc',z.c); b.style.setProperty('--pd',(idx*0.3).toFixed(2)+'s');
+      b.setAttribute('aria-label',`Look inside: ${z.t} (${n} photos)`);
+      b.innerHTML=`<span class="chip"><img src="images/pin-${z.k}.webp" alt="" loading="lazy"></span>`+
+        `<span class="plabel">${z.t}</span>`+
+        `<span class="pcard"><span class="pcimg"><img src="images/pin-${z.k}.webp" alt="" loading="lazy"></span>`+
+        `<span class="pcbody"><span class="pctag">${z.tag}</span><h4>${z.t}</h4>`+
+        `<span class="pccta">Look inside · ${n} photos</span></span></span>`;
+      pinsEl.appendChild(b); els[z.k]=b; place(z.k);
+      b.addEventListener('click',()=>{ LB.open(z.t,GAL[z.k],b); });
+    });
+    function place(k){
+      const b=els[k], p=POS[k];
+      b.style.left=p.x+'%'; b.style.top=p.y+'%';
+      b.classList.toggle('flip-down', p.y<48);   // near top → card opens downward
+      b.classList.toggle('edge-l', p.x<22);      // near left → nudge card right
+      b.classList.toggle('edge-r', p.x>78);      // near right → nudge card left
+    }
 
-  gkey.innerHTML=Object.entries(SPOTS).map(([k,v])=>
-    `<button data-spot="${k}" style="--kc:${v.c}"><i></i>${v.n} — ${v.t}</button>`).join('');
-  $$('#gkey button').forEach(b=>b.addEventListener('click',()=>{
-    openG(b.dataset.spot);
-    document.getElementById('gmap').scrollIntoView({behavior:'smooth',block:'center'});
-  }));
+    /* legend — click jumps into the gallery */
+    const gkey=$('#gkey');
+    if(gkey){ gkey.innerHTML=ZONES.map(z=>`<button data-k="${z.k}" style="--kc:${z.c}"><i></i>${z.t}</button>`).join('');
+      $$('#gkey button').forEach(btn=>btn.addEventListener('click',()=>{
+        const z=ZONES.find(x=>x.k===btn.dataset.k); LB.open(z.t,GAL[z.k],btn); })); }
+  })();
 
   /* --- menu --- */
   const drawer=$('#drawer'), burger=$('#burger');
@@ -1622,6 +1724,16 @@ footer{border-top:1px solid var(--hair);background:var(--night);padding-block:cl
     m.style.color='';m.style.borderColor='';
     m.textContent='Visual prototype — nothing was sent yet. Once connected, this posts to WhatsApp / CRM and returns a confirmation with the address.';
   });
+
+  /* --- room cards --- */
+  (function(){
+    if(!LB) return;
+    const ROOMS={'01':{t:'Room 01',n:8},'02':{t:'Room 02 · the camp room',n:5},'03':{t:'Room 03',n:7},'04':{t:'Room 04',n:6}};
+    $$('.room-card').forEach(c=>c.addEventListener('click',()=>{
+      const r=ROOMS[c.dataset.room]; if(!r)return;
+      LB.open(r.t, Array.from({length:r.n},(_,k)=>`images/room-${c.dataset.room}-${k+1}.webp`), c);
+    }));
+  })();
 })();
 </script>
 </body>
