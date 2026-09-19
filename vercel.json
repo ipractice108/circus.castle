@@ -23,5 +23,12 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://circuscastlebali.space/$1",
+      "permanent": true
+    }
   ]
 }
